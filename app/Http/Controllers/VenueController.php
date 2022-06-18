@@ -48,7 +48,9 @@ class VenueController extends Controller
      */
     public function show(Venue $venue)
     {
-        //
+        return view('venues.show', [
+            'venue' => $venue
+        ]);
     }
 
     /**

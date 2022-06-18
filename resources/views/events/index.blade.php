@@ -21,7 +21,7 @@
         <tbody>
             @foreach($events as $event)
             <tr>
-                <td>{{ $event->course->title }}</td>
+                <td><a href="/events/{{ $event->id }}">{{ $event->course->title }}</a></td>
                 <td>{{ $event->venue->name }}</td>
                 <td>{{ $event->start_date }}</td>                                
                 <td>{{ $event->start_time }}</td>                                
@@ -31,6 +31,8 @@
             @endforeach                            
         </tbody>
     </table>
+
+    <div>{{ $events->links() }}</div>
     
 </body>
 </html>

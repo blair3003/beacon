@@ -17,7 +17,7 @@
         <tbody>
             @foreach($courses as $course)
             <tr>
-                <td>{{ $course->title }}</td>
+                <td><a href="/courses/{{ $course->id }}">{{ $course->title }}</a></td>
                 <td>{{ $course->description }}</td>                             
             </tr>
             @endforeach                            

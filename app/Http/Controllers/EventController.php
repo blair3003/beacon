@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
 use App\Models\Event;
+use App\Models\Venue;
 use Illuminate\Http\Request;
 
 class EventController extends Controller
@@ -15,7 +17,7 @@ class EventController extends Controller
     public function index()
     {
         return view('events.index', [
-            'events' => Event::all()
+            'events' => Event::paginate(15)
         ]);
     }
 
@@ -26,7 +28,10 @@ class EventController extends Controller
      */
     public function create()
     {
-        //
+        return view('events.create', [
+            'courses' => Course::all(),
+            'venues' => Venue::all()
+        ]);
     }
 
     /**
@@ -37,7 +42,20 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request);
+        $formFields = $request->validate([
+            'course_id' => 'required|exists:courses,id',
+            'venue_id' => 'nullable|exists:venues,id',
+            'start_date' => 'required|date',
+            'start_time' => 'required|date_format:H:i',
+            'end_date' => 'required|date|after_or_equal:start_date',
+            'end_time' => 'required|date_format:H:i',
+            'notes' => 'nullable'
+        ]);
+
+        $event = Event::create($formFields);
+
+        return redirect('/events/' . $event->id);
     }
 
     /**
@@ -48,7 +66,9 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        //
+        return view('events.show', [
+            'event' => $event
+        ]);
     }
 
     /**

@@ -16,7 +16,7 @@
         <tbody>
             @foreach($venues as $venue)
             <tr>
-                <td>{{ $venue->name }}</td>                              
+                <td><a href="/venues/{{ $venue->id }}">{{ $venue->name }}</a></td>                              
             </tr>
             @endforeach                            
         </tbody>
