@@ -10,6 +10,20 @@
 
     <div><strong>Title:</strong> {{ $course->title }}</div>
     <div><strong>Description:</strong> {{ $course->description }}</div>
+
+    <div>
+        <a href="/courses/{{ $course->id }}/edit">Edit</a>
+
+        <form method="POST" action="/courses/{{ $course->id }}">
+            @csrf
+            @method('DELETE')
+            <button type="submit">Delete</button>
+        </form>
+
+        <a href="/courses">Back</a>        
+    </div>
+
+    <x-modal />
     
 </body>
 </html>

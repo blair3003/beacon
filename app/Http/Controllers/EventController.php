@@ -42,7 +42,6 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request);
         $formFields = $request->validate([
             'course_id' => 'required|exists:courses,id',
             'venue_id' => 'nullable|exists:venues,id',
@@ -79,7 +78,11 @@ class EventController extends Controller
      */
     public function edit(Event $event)
     {
-        //
+        return view('events.edit', [
+            'event' => $event,
+            'courses' => Course::all(),
+            'venues' => Venue::all()
+        ]);
     }
 
     /**
@@ -91,7 +94,19 @@ class EventController extends Controller
      */
     public function update(Request $request, Event $event)
     {
-        //
+        $formFields = $request->validate([
+            'course_id' => 'required|exists:courses,id',
+            'venue_id' => 'nullable|exists:venues,id',
+            'start_date' => 'required|date',
+            'start_time' => 'required|date_format:H:i',
+            'end_date' => 'required|date|after_or_equal:start_date',
+            'end_time' => 'required|date_format:H:i',
+            'notes' => 'nullable'
+        ]);
+
+        $event->update($formFields);
+
+        return redirect('/events/' . $event->id);
     }
 
     /**
@@ -102,6 +117,8 @@ class EventController extends Controller
      */
     public function destroy(Event $event)
     {
-        //
+        $event->delete();
+
+        return redirect('/events');
     }
 }

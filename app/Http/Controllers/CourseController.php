@@ -26,7 +26,7 @@ class CourseController extends Controller
      */
     public function create()
     {
-        //
+        return view('courses.create');
     }
 
     /**
@@ -37,7 +37,14 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $formFields = $request->validate([
+            'title' => 'required',
+            'description' => 'nullable'
+        ]);
+
+        $course = Course::create($formFields);
+
+        return redirect('/courses/' . $course->id);
     }
 
     /**
@@ -61,7 +68,9 @@ class CourseController extends Controller
      */
     public function edit(Course $course)
     {
-        //
+        return view('courses.edit', [
+            'course' => $course
+        ]);
     }
 
     /**
@@ -73,7 +82,14 @@ class CourseController extends Controller
      */
     public function update(Request $request, Course $course)
     {
-        //
+        $formFields = $request->validate([
+            'title' => 'required',
+            'description' => 'nullable'
+        ]);
+
+        $course->update($formFields);
+
+        return redirect('/courses/' . $course->id)->with('message', 'Course updated!');
     }
 
     /**
@@ -84,6 +100,13 @@ class CourseController extends Controller
      */
     public function destroy(Course $course)
     {
-        //
+        if ($course->events) {
+            return back()->with('message', 'Course cannot be deleted!');
+        }
+
+
+        $course->delete();
+
+        return redirect('/courses');
     }
 }

@@ -7,6 +7,7 @@
 </head>
 <body>
     <h1>Venues</h1>
+    <a href="/venues/create">Create new venue</a>
     <table>
         <thead>
             <tr>

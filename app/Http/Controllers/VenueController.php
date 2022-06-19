@@ -26,7 +26,7 @@ class VenueController extends Controller
      */
     public function create()
     {
-        //
+        return view('venues.create');
     }
 
     /**
@@ -37,7 +37,13 @@ class VenueController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $formFields = $request->validate([
+            'name' => 'required'
+        ]);
+
+        $venue = Venue::create($formFields);
+
+        return redirect('/venues/' . $venue->id);
     }
 
     /**
@@ -61,7 +67,9 @@ class VenueController extends Controller
      */
     public function edit(Venue $venue)
     {
-        //
+        return view('venues.edit', [
+            'venue' => $venue
+        ]);
     }
 
     /**
@@ -73,7 +81,13 @@ class VenueController extends Controller
      */
     public function update(Request $request, Venue $venue)
     {
-        //
+        $formFields = $request->validate([
+            'name' => 'required'
+        ]);
+
+        $venue->update($formFields);
+
+        return redirect('/venues/' . $venue->id)->with('message', 'Venue updated!');
     }
 
     /**
@@ -84,6 +98,8 @@ class VenueController extends Controller
      */
     public function destroy(Venue $venue)
     {
-        //
+        $venue->delete();
+
+        return redirect('/venues');
     }
 }
