@@ -18,9 +18,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('courses', \App\Http\Controllers\CourseController::class);
-Route::resource('events', \App\Http\Controllers\EventController::class);
-Route::resource('venues', \App\Http\Controllers\VenueController::class);
+Route::resources([
+    'courses' => \App\Http\Controllers\CourseController::class,
+    'events' => \App\Http\Controllers\EventController::class,
+    'venues' => \App\Http\Controllers\VenueController::class,
+]);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

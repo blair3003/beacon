@@ -1,29 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Venue | BEACON</title>
-</head>
-<body>
-    <h1>Create Venue</h1>
-    <form method="POST" action="/venues">
-        @csrf
-        <fieldset>
-            <legend>Enter venue details</legend>
+<x-app-layout>
+    <x-slot:title>Create Venue</x-slot>
 
-            <div>
-                <label for="title">Name:</label>
-                <input type="text" id="name" name="name" value="{{ old('name') }}">
-                @error('name')
-                <p>{{ $message }}</p>
-                @enderror                
+    <x-slot:header>
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">Create Venue</h2>
+    </x-slot>
+
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 bg-white border-b border-gray-200">
+                    <form method="POST" action="/venues">
+                        @csrf
+                        <fieldset>
+                            <legend>Enter venue details</legend>
+
+                            <div>
+                                <label for="title">Name:</label>
+                                <input type="text" id="name" name="name" value="{{ old('name') }}">
+                                @error('name')
+                                <p>{{ $message }}</p>
+                                @enderror                
+                            </div>
+                            
+                        </fieldset>
+
+                        <button type="submit">Create</button>    
+                    </form>
+                </div>
             </div>
-            
-        </fieldset>
-
-        <button type="submit">Create</button>    
-    </form>
-    
-</body>
-</html>
+        </div>
+    </div>
+</x-app-layout>
