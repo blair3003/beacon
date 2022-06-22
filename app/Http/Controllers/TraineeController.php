@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use App\Models\Trainee;
 
 class TraineeController extends Controller
 {
@@ -13,7 +15,9 @@ class TraineeController extends Controller
      */
     public function index()
     {
-        //
+        return view('trainees.index', [
+            'trainees' => Trainee::paginate(15)
+        ]);
     }
 
     /**
@@ -23,7 +27,7 @@ class TraineeController extends Controller
      */
     public function create()
     {
-        //
+        return view('trainees.create');
     }
 
     /**
@@ -34,41 +38,61 @@ class TraineeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $formFields = $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required|unique:trainees'
+        ]);
+
+        $trainee = Trainee::create($formFields);
+
+        return redirect('/trainees/' . $trainee->id);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Trainee  $trainee
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Trainee $trainee)
     {
-        //
+        return view('trainees.show', [
+            'trainee' => $trainee
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Trainee  $trainee
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Trainee $trainee)
     {
-        //
+        return view('trainees.edit', [
+            'trainee' => $trainee
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Trainee  $trainee
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Trainee $trainee)
     {
-        //
+        $formFields = $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => ['required', Rule::unique('trainees')->ignore($trainee)]
+        ]);
+
+        $trainee->update($formFields);
+
+        return redirect('/trainees/' . $trainee->id);
     }
 
     /**

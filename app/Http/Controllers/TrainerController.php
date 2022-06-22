@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Trainer;
 
 class TrainerController extends Controller
 {
@@ -13,7 +14,9 @@ class TrainerController extends Controller
      */
     public function index()
     {
-        //
+        return view('trainers.index', [
+            'trainers' => Trainer::paginate(15)
+        ]);
     }
 
     /**

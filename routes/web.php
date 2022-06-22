@@ -21,6 +21,8 @@ Route::get('/', function () {
 Route::resources([
     'courses' => \App\Http\Controllers\CourseController::class,
     'events' => \App\Http\Controllers\EventController::class,
+    'trainees' => \App\Http\Controllers\TraineeController::class,
+    'trainers' => \App\Http\Controllers\TrainerController::class,
     'venues' => \App\Http\Controllers\VenueController::class,
 ]);
 

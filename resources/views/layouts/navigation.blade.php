@@ -16,6 +16,8 @@
                     <x-nav-link :href="route('events.index')" :active="request()->routeIs('events.index')">Events</x-nav-link>
                     <x-nav-link :href="route('courses.index')" :active="request()->routeIs('courses.index')">Courses</x-nav-link>
                     <x-nav-link :href="route('venues.index')" :active="request()->routeIs('venues.index')">Venues</x-nav-link>
+                    <x-nav-link :href="route('trainees.index')" :active="request()->routeIs('trainees.index')">Trainees</x-nav-link>
+                    <x-nav-link :href="route('trainers.index')" :active="request()->routeIs('trainers.index')">Trainers</x-nav-link>
                 </div>
             </div>
 
@@ -68,6 +70,8 @@
             <x-responsive-nav-link :href="route('events.index')" :active="request()->routeIs('events.index')">Events</x-responsive-nav-link>
             <x-responsive-nav-link :href="route('courses.index')" :active="request()->routeIs('courses.index')">Courses</x-responsive-nav-link>
             <x-responsive-nav-link :href="route('venues.index')" :active="request()->routeIs('venues.index')">Venues</x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('trainees.index')" :active="request()->routeIs('trainees.index')">Trainees</x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('trainers.index')" :active="request()->routeIs('trainers.index')">Trainers</x-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->

@@ -26,16 +26,30 @@ class Trainee extends Model
     ];
 
     /**
-     * Check trainee is trainer.
+     * Get the trainee's full name.
+     *
+     * @return string
      */
-    public function isTrainer() : bool
+    public function getFullNameAttribute()
+    {
+        return "{$this->first_name} {$this->last_name}";
+    }
+
+    /**
+     * Check trainee is trainer.
+     * 
+     * @return bool
+     */
+    public function isTrainer()
     {
         return $this->trainer()->exists();
 
     }
 
     /**
-     * Get the trainer associated with the trainee.
+     * Get the trainer associated with the trainee. 
+     * 
+     * @return \App\Models\Trainer
      */
     public function trainer()
     {
