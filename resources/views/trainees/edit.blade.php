@@ -41,8 +41,23 @@
                             
                         </fieldset>
 
-                        <button type="submit">Update</button>    
+                        <button type="submit">Update</button>                        
                     </form>
+
+                    @unless($trainee->isTrainer())
+                    <form method="POST" action="/trainers">
+                        @csrf
+                        <input type="hidden" name="trainee_id" value="{{ $trainee->id }}">
+                        <button type="submit">Make trainer</button>                        
+                    </form>
+                    @else
+                    <form method="POST" action="/trainers/{{ $trainee->trainer->id }}">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit">Remove trainer</button>                        
+                    </form>
+                    @endunless
+
                 </div>
             </div>
         </div>

@@ -98,11 +98,13 @@ class TraineeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Trainee  $trainee
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Trainee $trainee)
     {
-        //
+        $trainee->delete();
+
+        return redirect('/trainees');
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Trainee;
 use App\Models\Trainer;
 
 class TrainerController extends Controller
@@ -26,7 +27,9 @@ class TrainerController extends Controller
      */
     public function create()
     {
-        //
+        return view('trainers.create', [
+            'trainees' => Trainee::doesntHave('trainer')->get()
+        ]);
     }
 
     /**
@@ -37,51 +40,59 @@ class TrainerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $formFields = $request->validate([
+            'trainee_id' => 'required|exists:trainees,id|unique:trainers',
+        ]);
+
+        $trainer = Trainer::create($formFields);
+
+        return redirect('/trainees/' . $trainer->trainee->id);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Trainer  $trainer
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Trainer $trainer)
     {
-        //
+        return redirect('/trainees/' . $trainer->trainee->id);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Trainer  $trainer
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Trainer $trainer)
     {
-        //
+        return redirect('/trainees/' . $trainer->trainee->id . '/edit');
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Trainer  $trainer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Trainer $trainer)
     {
-        //
+        return redirect('/trainees/' . $trainer->trainee->id);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Trainer  $trainer
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Trainer $trainer)
     {
-        //
+        $trainer->delete();
+
+        return redirect('/trainees/' . $trainer->trainee->id);
     }
 }
