@@ -20,4 +20,12 @@ class Trainer extends Model
     {
         return $this->belongsTo(Trainee::class);
     }
+
+    /**
+     * Get the events that belong to the trainer. 
+     */
+    public function events()
+    {
+        return $this->belongsToMany(Event::class);
+    }
 }

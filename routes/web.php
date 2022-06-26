@@ -18,13 +18,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resources([
-    'courses' => \App\Http\Controllers\CourseController::class,
-    'events' => \App\Http\Controllers\EventController::class,
-    'trainees' => \App\Http\Controllers\TraineeController::class,
-    'trainers' => \App\Http\Controllers\TrainerController::class,
-    'venues' => \App\Http\Controllers\VenueController::class,
-]);
+Route::middleware('auth')->group(function () {
+    Route::resources([
+        'courses' => \App\Http\Controllers\CourseController::class,
+        'events' => \App\Http\Controllers\EventController::class,
+        'events.trainees' => \App\Http\Controllers\EventTraineeController::class,
+        'events.trainers' => \App\Http\Controllers\EventTrainerController::class,
+        'trainees' => \App\Http\Controllers\TraineeController::class,
+        'trainers' => \App\Http\Controllers\TrainerController::class,
+        'venues' => \App\Http\Controllers\VenueController::class,
+    ]);
+});
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

@@ -121,4 +121,15 @@ class EventController extends Controller
 
         return redirect('/events');
     }
+
+    /**
+     * Add a trainee to the event.
+     * 
+     * @param  \App\Models\Event  $event
+     * @param  \App\Models\Trainee  $trainee
+     */
+    public function addTrainee(Event $event, Trainee $trainee)
+    {
+        $event->trainees()->attach();
+    }
 }

@@ -35,5 +35,21 @@ class Event extends Model
         return $this->belongsTo(Venue::class);
     }
 
+    /**
+     * Get the trainees that belong to the event. 
+     */
+    public function trainees()
+    {
+        return $this->belongsToMany(Trainee::class);
+    }
+
+    /**
+     * Get the trainers that belong to the event. 
+     */
+    public function trainers()
+    {
+        return $this->belongsToMany(Trainer::class);
+    }
+
 
 }

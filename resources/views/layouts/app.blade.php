@@ -30,9 +30,10 @@
             <!-- Page Content -->
             <main>
                 {{ $slot }}
+                
+                <x-modal/>
             </main>
         </div>
 
-        <x-modal/>
     </body>
 </html>

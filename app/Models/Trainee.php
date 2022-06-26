@@ -27,8 +27,6 @@ class Trainee extends Model
 
     /**
      * Get the trainee's full name.
-     *
-     * @return string
      */
     public function getFullNameAttribute()
     {
@@ -37,8 +35,6 @@ class Trainee extends Model
 
     /**
      * Check trainee is trainer.
-     * 
-     * @return bool
      */
     public function isTrainer()
     {
@@ -48,11 +44,17 @@ class Trainee extends Model
 
     /**
      * Get the trainer associated with the trainee. 
-     * 
-     * @return \App\Models\Trainer
      */
     public function trainer()
     {
         return $this->hasOne(Trainer::class);
+    }
+
+    /**
+     * Get the events that belong to the trainee. 
+     */
+    public function events()
+    {
+        return $this->belongsToMany(Event::class);
     }
 }
