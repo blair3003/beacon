@@ -16,7 +16,7 @@ class EventTraineeController extends Controller
      */
     public function index(Event $event)
     {
-        dd(request());
+        return redirect(route('events.show', $event));
     }
 
     /**
@@ -29,7 +29,7 @@ class EventTraineeController extends Controller
     {
         return view('events.trainees.create', [
             'event' => $event,
-            'trainees' => Trainee::all()
+            'trainees' => Trainee::whereNotIn('id', $event->trainees->pluck('id'))->get()
         ]);
     }
 
@@ -50,12 +50,11 @@ class EventTraineeController extends Controller
 
         if ($event->trainees->contains($trainee)) {
             return redirect(route('events.trainees.create', $event))->with('message', 'Trainee already on event!');
-
         }
 
         $event->trainees()->attach($trainee);
 
-        return redirect('/events/' . $event->id);
+        return redirect(route('events.show', $event))->with('message', 'Trainee added to event!');
     }
 
     /**
@@ -67,7 +66,7 @@ class EventTraineeController extends Controller
      */
     public function show(Event $event, Trainee $trainee)
     {
-        dd(request());
+        return redirect(route('events.show', $event));
     }
 
     /**
@@ -79,7 +78,7 @@ class EventTraineeController extends Controller
      */
     public function edit(Event $event, Trainee $trainee)
     {
-        dd(request());
+        return redirect(route('events.show', $event));
     }
 
     /**
@@ -92,7 +91,7 @@ class EventTraineeController extends Controller
      */
     public function update(Request $request, Event $event, Trainee $trainee)
     {
-        dd(request());
+        return redirect(route('events.show', $event));
     }
 
     /**
@@ -104,6 +103,10 @@ class EventTraineeController extends Controller
      */
     public function destroy(Event $event, Trainee $trainee)
     {
-        dd(request());
+        if ($event->trainees->contains($trainee)) {
+            $event->trainees()->detach($trainee);
+            return redirect(route('events.show', $event))->with('message', 'Trainee removed from event!');
+        }
+        return redirect(route('events.show', $event));
     }
 }

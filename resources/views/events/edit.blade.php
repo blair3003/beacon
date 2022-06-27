@@ -85,7 +85,7 @@
 
                         <button type="submit">Update</button>    
                     </form>
-                    <a href="/events/{{ $event->id }}">Back</a>
+                    <a href="{{ route('events.show', $event) }}">Back</a>
                 </div>
             </div>
         </div>

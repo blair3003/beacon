@@ -1,8 +1,8 @@
 <x-app-layout>
-    <x-slot:title>Add Trainee to Event</x-slot>
+    <x-slot:title>Add Trainer to Event</x-slot>
 
     <x-slot:header>
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">Add Trainee to Event #{{ $event->id }}</h2>
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">Add Trainer to Event #{{ $event->id }}</h2>
     </x-slot>
 
     <div class="py-12">
@@ -11,18 +11,18 @@
                 <div class="p-6 bg-white border-b border-gray-200">
 
 
-                        <form method="POST" action="/events/{{ $event->id }}/trainees">
+                        <form method="POST" action="/events/{{ $event->id }}/trainers">
                             @csrf
 
                             <div>
-                                <label for="trainee">Trainee:</label>
-                                <select name="trainee_id" id="trainee">
-                                    <option value="">--Please choose a trainee--</option>
-                                    @foreach($trainees as $trainee)
-                                    <option value="{{ $trainee->id }}" {{ (old('trainee_id') == $trainee->id) ? 'selected' : '' }}>{{ $trainee->full_name }}</option>
+                                <label for="trainer">Trainer:</label>
+                                <select name="trainer_id" id="trainer">
+                                    <option value="">--Please choose a trainer--</option>
+                                    @foreach($trainers as $trainer)
+                                    <option value="{{ $trainer->id }}" {{ (old('trainer_id') == $trainer->id) ? 'selected' : '' }}>{{ $trainer->trainee->full_name }}</option>
                                     @endforeach
                                 </select>
-                                @error('trainee_id')
+                                @error('trainer_id')
                                 <p>{{ $message }}</p>
                                 @enderror                
                             </div>

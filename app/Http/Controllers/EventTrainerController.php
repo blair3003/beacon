@@ -16,7 +16,7 @@ class EventTrainerController extends Controller
      */
     public function index(Event $event)
     {
-        //
+        return redirect(route('events.show', $event));
     }
 
     /**
@@ -27,7 +27,10 @@ class EventTrainerController extends Controller
      */
     public function create(Event $event)
     {
-        //
+        return view('events.trainers.create', [
+            'event' => $event,
+            'trainers' => Trainer::whereNotIn('id', $event->trainers->pluck('id'))->get()
+        ]);
     }
 
     /**
@@ -39,7 +42,19 @@ class EventTrainerController extends Controller
      */
     public function store(Request $request, Event $event)
     {
-        //
+        $formFields = $request->validate([
+            'trainer_id' => 'required|exists:trainers,id'
+        ]);
+
+        $trainer = Trainer::find($request->trainer_id);
+
+        if ($event->trainers->contains($trainer)) {
+            return redirect(route('events.trainers.create', $event))->with('message', 'Trainer already on event!');
+        }
+
+        $event->trainers()->attach($trainer);
+
+        return redirect(route('events.show', $event));
     }
 
     /**
@@ -51,7 +66,7 @@ class EventTrainerController extends Controller
      */
     public function show(Event $event, Trainer $trainer)
     {
-        //
+        return redirect(route('events.show', $event));
     }
 
     /**
@@ -63,7 +78,7 @@ class EventTrainerController extends Controller
      */
     public function edit(Event $event, Trainer $trainer)
     {
-        //
+        return redirect(route('events.show', $event));
     }
 
     /**
@@ -76,7 +91,7 @@ class EventTrainerController extends Controller
      */
     public function update(Request $request, Event $event, Trainer $trainer)
     {
-        //
+        return redirect(route('events.show', $event));
     }
 
     /**
@@ -88,6 +103,10 @@ class EventTrainerController extends Controller
      */
     public function destroy(Event $event, Trainer $trainer)
     {
-        //
+        if ($event->trainers->contains($trainer)) {
+            $event->trainers()->detach($trainer);
+            return redirect(route('events.show', $event))->with('message', 'Trainer removed from event!');
+        }
+        return redirect(route('events.show', $event));
     }
 }

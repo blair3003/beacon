@@ -16,7 +16,7 @@ class TrainerController extends Controller
     public function index()
     {
         return view('trainers.index', [
-            'trainers' => Trainer::paginate(15)
+            'trainers' => Trainer::with('trainee')->paginate(15)
         ]);
     }
 
@@ -46,7 +46,7 @@ class TrainerController extends Controller
 
         $trainer = Trainer::create($formFields);
 
-        return redirect('/trainees/' . $trainer->trainee->id);
+        return redirect(route('trainees.show', $trainer->trainee));
     }
 
     /**
@@ -57,7 +57,7 @@ class TrainerController extends Controller
      */
     public function show(Trainer $trainer)
     {
-        return redirect('/trainees/' . $trainer->trainee->id);
+        return redirect(route('trainees.show', $trainer->trainee));
     }
 
     /**
@@ -80,7 +80,7 @@ class TrainerController extends Controller
      */
     public function update(Request $request, Trainer $trainer)
     {
-        return redirect('/trainees/' . $trainer->trainee->id);
+        return redirect(route('trainees.show', $trainer->trainee));
     }
 
     /**
@@ -93,6 +93,6 @@ class TrainerController extends Controller
     {
         $trainer->delete();
 
-        return redirect('/trainees/' . $trainer->trainee->id);
+        return redirect(route('trainees.show', $trainer->trainee));
     }
 }
