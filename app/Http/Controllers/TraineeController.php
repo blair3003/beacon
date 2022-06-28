@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TraineeStoreRequest;
+use App\Http\Requests\TraineeUpdateRequest;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Models\Trainee;
@@ -36,17 +38,11 @@ class TraineeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TraineeStoreRequest $request)
     {
-        $formFields = $request->validate([
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'email' => 'required|unique:trainees'
-        ]);
+        $trainee = Trainee::create($request->validated());
 
-        $trainee = Trainee::create($formFields);
-
-        return redirect('/trainees/' . $trainee->id);
+        return redirect(route('trainees.show', $trainee))->with('message', 'Trainee created!');
     }
 
     /**
@@ -82,17 +78,11 @@ class TraineeController extends Controller
      * @param  \App\Models\Trainee  $trainee
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Trainee $trainee)
+    public function update(TraineeUpdateRequest $request, Trainee $trainee)
     {
-        $formFields = $request->validate([
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'email' => ['required', Rule::unique('trainees')->ignore($trainee)]
-        ]);
+        $trainee->update($request->validated());
 
-        $trainee->update($formFields);
-
-        return redirect('/trainees/' . $trainee->id);
+        return redirect(route('trainees.show', $trainee))->with('message', 'Trainee updated!');
     }
 
     /**
@@ -105,6 +95,6 @@ class TraineeController extends Controller
     {
         $trainee->delete();
 
-        return redirect('/trainees');
+        return redirect(route('trainees.index'))->with('message', 'Trainee removed!');
     }
 }

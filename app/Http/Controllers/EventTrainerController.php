@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EventTrainerStoreRequest;
 use App\Models\Event;
 use App\Models\Trainer;
 use Illuminate\Http\Request;
@@ -29,7 +30,7 @@ class EventTrainerController extends Controller
     {
         return view('events.trainers.create', [
             'event' => $event,
-            'trainers' => Trainer::whereNotIn('id', $event->trainers->pluck('id'))->get()
+            'trainers' => Trainer::whereNotIn('id', $event->trainers->pluck('id'))->with('trainee')->get()
         ]);
     }
 
@@ -40,12 +41,8 @@ class EventTrainerController extends Controller
      * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Event $event)
+    public function store(EventTrainerStoreRequest $request, Event $event)
     {
-        $formFields = $request->validate([
-            'trainer_id' => 'required|exists:trainers,id'
-        ]);
-
         $trainer = Trainer::find($request->trainer_id);
 
         if ($event->trainers->contains($trainer)) {
@@ -54,7 +51,7 @@ class EventTrainerController extends Controller
 
         $event->trainers()->attach($trainer);
 
-        return redirect(route('events.show', $event));
+        return redirect(route('events.show', $event))->with('message', 'Trainer added to event!');
     }
 
     /**

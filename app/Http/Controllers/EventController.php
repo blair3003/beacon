@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EventStoreRequest;
+use App\Http\Requests\EventUpdateRequest;
 use App\Models\Course;
 use App\Models\Event;
 use App\Models\Venue;
@@ -40,21 +42,11 @@ class EventController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EventStoreRequest $request)
     {
-        $formFields = $request->validate([
-            'course_id' => 'required|exists:courses,id',
-            'venue_id' => 'nullable|exists:venues,id',
-            'start_date' => 'required|date',
-            'start_time' => 'required|date_format:H:i',
-            'end_date' => 'required|date|after_or_equal:start_date',
-            'end_time' => 'required|date_format:H:i',
-            'notes' => 'nullable'
-        ]);
+        $event = Event::create($request->validated());
 
-        $event = Event::create($formFields);
-
-        return redirect('/events/' . $event->id);
+        return redirect(route('events.show', $event))->with('message', 'Event created!');
     }
 
     /**
@@ -92,21 +84,11 @@ class EventController extends Controller
      * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Event $event)
+    public function update(EventUpdateRequest $request, Event $event)
     {
-        $formFields = $request->validate([
-            'course_id' => 'required|exists:courses,id',
-            'venue_id' => 'nullable|exists:venues,id',
-            'start_date' => 'required|date',
-            'start_time' => 'required|date_format:H:i',
-            'end_date' => 'required|date|after_or_equal:start_date',
-            'end_time' => 'required|date_format:H:i',
-            'notes' => 'nullable'
-        ]);
+        $event->update($request->validated());
 
-        $event->update($formFields);
-
-        return redirect('/events/' . $event->id);
+        return redirect(route('events.show', $event))->with('message', 'Event updated!');
     }
 
     /**
@@ -119,17 +101,6 @@ class EventController extends Controller
     {
         $event->delete();
 
-        return redirect('/events');
-    }
-
-    /**
-     * Add a trainee to the event.
-     * 
-     * @param  \App\Models\Event  $event
-     * @param  \App\Models\Trainee  $trainee
-     */
-    public function addTrainee(Event $event, Trainee $trainee)
-    {
-        $event->trainees()->attach();
+        return redirect(route('events.index'))->with('message', 'Event removed!');
     }
 }

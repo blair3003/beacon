@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EventTraineeStoreRequest;
 use App\Models\Event;
 use App\Models\Trainee;
 use Illuminate\Http\Request;
@@ -40,12 +41,8 @@ class EventTraineeController extends Controller
      * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Event $event)
+    public function store(EventTraineeStoreRequest $request, Event $event)
     {
-        $formFields = $request->validate([
-            'trainee_id' => 'required|exists:trainees,id'
-        ]);
-
         $trainee = Trainee::find($request->trainee_id);
 
         if ($event->trainees->contains($trainee)) {

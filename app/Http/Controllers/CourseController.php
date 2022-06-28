@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CourseStoreRequest;
+use App\Http\Requests\CourseUpdateRequest;
 use App\Models\Course;
 use Illuminate\Http\Request;
 
@@ -35,16 +37,11 @@ class CourseController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CourseStoreRequest $request)
     {
-        $formFields = $request->validate([
-            'title' => 'required',
-            'description' => 'nullable'
-        ]);
+        $course = Course::create($request->validated());
 
-        $course = Course::create($formFields);
-
-        return redirect('/courses/' . $course->id);
+        return redirect(route('courses.show', $course))->with('message', 'Course created!');
     }
 
     /**
@@ -80,16 +77,11 @@ class CourseController extends Controller
      * @param  \App\Models\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Course $course)
+    public function update(CourseUpdateRequest $request, Course $course)
     {
-        $formFields = $request->validate([
-            'title' => 'required',
-            'description' => 'nullable'
-        ]);
+        $course->update($request->validated());
 
-        $course->update($formFields);
-
-        return redirect('/courses/' . $course->id)->with('message', 'Course updated!');
+        return redirect(route('courses.show', $course))->with('message', 'Course updated!');
     }
 
     /**
@@ -100,13 +92,11 @@ class CourseController extends Controller
      */
     public function destroy(Course $course)
     {
-        if ($course->events) {
-            return back()->with('message', 'Course cannot be deleted!');
+        if ($course->events->isEmpty()) {
+            $course->delete();
+            return redirect(route('courses.index'))->with('message', 'Course removed!');
         }
-
-
-        $course->delete();
-
-        return redirect('/courses');
+        
+        return back()->with('message', 'Course cannot be removed!');
     }
 }

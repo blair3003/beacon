@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TrainerStoreRequest;
 use Illuminate\Http\Request;
 use App\Models\Trainee;
 use App\Models\Trainer;
@@ -38,15 +39,11 @@ class TrainerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TrainerStoreRequest $request)
     {
-        $formFields = $request->validate([
-            'trainee_id' => 'required|exists:trainees,id|unique:trainers',
-        ]);
+        $trainer = Trainer::create($request->validated());
 
-        $trainer = Trainer::create($formFields);
-
-        return redirect(route('trainees.show', $trainer->trainee));
+        return redirect(route('trainees.show', $trainer->trainee))->with('message', 'Trainer created!');
     }
 
     /**
@@ -68,7 +65,7 @@ class TrainerController extends Controller
      */
     public function edit(Trainer $trainer)
     {
-        return redirect('/trainees/' . $trainer->trainee->id . '/edit');
+        return redirect(route('trainees.edit', $trainer->trainee));
     }
 
     /**
@@ -80,7 +77,7 @@ class TrainerController extends Controller
      */
     public function update(Request $request, Trainer $trainer)
     {
-        return redirect(route('trainees.show', $trainer->trainee));
+        return redirect(route('trainees.show', $trainer->trainee))->with('message', 'Trainer updated!');
     }
 
     /**
@@ -93,6 +90,6 @@ class TrainerController extends Controller
     {
         $trainer->delete();
 
-        return redirect(route('trainees.show', $trainer->trainee));
+        return redirect(route('trainees.show', $trainer->trainee))->with('message', 'Trainer removed!');
     }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\VenueStoreRequest;
+use App\Http\Requests\VenueUpdateRequest;
 use App\Models\Venue;
 use Illuminate\Http\Request;
 
@@ -35,7 +37,7 @@ class VenueController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(VenueStoreRequest $request)
     {
         $formFields = $request->validate([
             'name' => 'required'
@@ -43,7 +45,7 @@ class VenueController extends Controller
 
         $venue = Venue::create($formFields);
 
-        return redirect('/venues/' . $venue->id);
+        return redirect(route('venues.show', $venue))->with('message', 'Venue created!');
     }
 
     /**
@@ -79,15 +81,11 @@ class VenueController extends Controller
      * @param  \App\Models\Venue  $venue
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Venue $venue)
+    public function update(VenueUpdateRequest $request, Venue $venue)
     {
-        $formFields = $request->validate([
-            'name' => 'required'
-        ]);
+        $venue->update($request->validated());
 
-        $venue->update($formFields);
-
-        return redirect('/venues/' . $venue->id)->with('message', 'Venue updated!');
+        return redirect(route('venues.show', $venue))->with('message', 'Venue updated!');
     }
 
     /**
@@ -100,6 +98,6 @@ class VenueController extends Controller
     {
         $venue->delete();
 
-        return redirect('/venues');
+        return redirect(route('venues.index'))->with('message', 'Venue removed!');
     }
 }
