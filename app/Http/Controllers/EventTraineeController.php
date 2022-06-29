@@ -5,10 +5,18 @@ namespace App\Http\Controllers;
 use App\Http\Requests\EventTraineeStoreRequest;
 use App\Models\Event;
 use App\Models\Trainee;
+use App\Services\EventService;
 use Illuminate\Http\Request;
 
 class EventTraineeController extends Controller
 {
+    protected $eventService;
+
+    public function __construct(EventService $eventService)
+    {
+        $this->eventService = $eventService;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -32,6 +40,7 @@ class EventTraineeController extends Controller
             'event' => $event,
             'trainees' => Trainee::whereNotIn('id', $event->trainees->pluck('id'))->get()
         ]);
+
     }
 
     /**
@@ -43,13 +52,11 @@ class EventTraineeController extends Controller
      */
     public function store(EventTraineeStoreRequest $request, Event $event)
     {
-        $trainee = Trainee::find($request->trainee_id);
-
-        if ($event->trainees->contains($trainee)) {
-            return redirect(route('events.trainees.create', $event))->with('message', 'Trainee already on event!');
+        try {
+            $this->eventService->addTrainee($event, $request->trainee_id);
+        } catch (\Exception $exception) {
+            return redirect(route('events.trainees.create', $event))->with('message', $exception->getMessage());
         }
-
-        $event->trainees()->attach($trainee);
 
         return redirect(route('events.show', $event))->with('message', 'Trainee added to event!');
     }
@@ -100,10 +107,12 @@ class EventTraineeController extends Controller
      */
     public function destroy(Event $event, Trainee $trainee)
     {
-        if ($event->trainees->contains($trainee)) {
-            $event->trainees()->detach($trainee);
-            return redirect(route('events.show', $event))->with('message', 'Trainee removed from event!');
+        try {
+            $this->eventService->removeTrainee($event, $trainee);
+        } catch (\Exception $exception) {
+            return redirect(route('events.show', $event))->with('message', $exception->getMessage());
         }
+        
         return redirect(route('events.show', $event));
     }
 }
