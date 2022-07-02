@@ -5,10 +5,17 @@ namespace App\Http\Controllers;
 use App\Http\Requests\EventTrainerStoreRequest;
 use App\Models\Event;
 use App\Models\Trainer;
+use App\Services\EventService;
 use Illuminate\Http\Request;
 
 class EventTrainerController extends Controller
 {
+    protected $eventService;
+
+    public function __construct(EventService $eventService)
+    {
+        $this->eventService = $eventService;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -43,13 +50,11 @@ class EventTrainerController extends Controller
      */
     public function store(EventTrainerStoreRequest $request, Event $event)
     {
-        $trainer = Trainer::find($request->trainer_id);
-
-        if ($event->trainers->contains($trainer)) {
-            return redirect(route('events.trainers.create', $event))->with('message', 'Trainer already on event!');
+        try {
+            $this->eventService->addTrainer($event->id, $request->trainer_id);
+        } catch (\Exception $exception) {
+            return redirect(route('events.trainers.create', $event))->with('message', $exception->getMessage());
         }
-
-        $event->trainers()->attach($trainer);
 
         return redirect(route('events.show', $event))->with('message', 'Trainer added to event!');
     }
@@ -100,10 +105,12 @@ class EventTrainerController extends Controller
      */
     public function destroy(Event $event, Trainer $trainer)
     {
-        if ($event->trainers->contains($trainer)) {
-            $event->trainers()->detach($trainer);
-            return redirect(route('events.show', $event))->with('message', 'Trainer removed from event!');
+        try {
+            $this->eventService->removeTrainer($event->id, $trainer->id);
+        } catch (\Exception $exception) {
+            return redirect(route('events.show', $event))->with('message', $exception->getMessage());
         }
+        
         return redirect(route('events.show', $event));
     }
 }

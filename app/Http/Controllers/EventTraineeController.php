@@ -53,7 +53,7 @@ class EventTraineeController extends Controller
     public function store(EventTraineeStoreRequest $request, Event $event)
     {
         try {
-            $this->eventService->addTrainee($event, $request->trainee_id);
+            $this->eventService->addTrainee($event->id, $request->trainee_id);
         } catch (\Exception $exception) {
             return redirect(route('events.trainees.create', $event))->with('message', $exception->getMessage());
         }
@@ -108,7 +108,7 @@ class EventTraineeController extends Controller
     public function destroy(Event $event, Trainee $trainee)
     {
         try {
-            $this->eventService->removeTrainee($event, $trainee);
+            $this->eventService->removeTrainee($event->id, $trainee->id);
         } catch (\Exception $exception) {
             return redirect(route('events.show', $event))->with('message', $exception->getMessage());
         }

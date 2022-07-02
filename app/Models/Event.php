@@ -51,5 +51,13 @@ class Event extends Model
         return $this->belongsToMany(Trainer::class);
     }
 
+    /**
+     * Get the certificates for the event.
+     */
+    public function certificates()
+    {
+        return $this->hasMany(Certificate::class);
+    }
+
 
 }

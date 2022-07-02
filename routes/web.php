@@ -20,6 +20,7 @@ Route::get('/', function () {
 
 Route::middleware('auth')->group(function () {
     Route::resources([
+        'certificates' => \App\Http\Controllers\CertificateController::class,
         'courses' => \App\Http\Controllers\CourseController::class,
         'events' => \App\Http\Controllers\EventController::class,
         'events.trainees' => \App\Http\Controllers\EventTraineeController::class,

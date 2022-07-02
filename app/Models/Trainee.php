@@ -57,4 +57,12 @@ class Trainee extends Model
     {
         return $this->belongsToMany(Event::class);
     }
+
+    /**
+     * Get the certificates for the trainee.
+     */
+    public function certificates()
+    {
+        return $this->hasMany(Certificate::class);
+    }
 }
