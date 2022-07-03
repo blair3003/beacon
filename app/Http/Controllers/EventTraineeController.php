@@ -113,6 +113,6 @@ class EventTraineeController extends Controller
             return redirect(route('events.show', $event))->with('message', $exception->getMessage());
         }
         
-        return redirect(route('events.show', $event));
+        return redirect(route('events.show', $event))->with('message', 'Trainee removed from event!');
     }
 }

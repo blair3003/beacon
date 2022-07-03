@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('certificates', function (Blueprint $table) {
-            $table->primary(['event_id', 'trainee_id']);
+            $table->id();
             $table->foreignId('event_id')->constrained()->cascadeOnDelete();
             $table->foreignId('trainee_id')->constrained()->cascadeOnDelete();
             $table->timestamps();

@@ -38,7 +38,7 @@ class CertificateController extends Controller
     {
         $certificate = Certificate::create($request->validated());
 
-        return redirect(route('events.show', $certificate->event))->with('message', 'Certificate created!');
+        return redirect(route('events.show', $certificate->event))->with('message', 'Certificate awarded!');
     }
 
     /**

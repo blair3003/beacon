@@ -111,6 +111,6 @@ class EventTrainerController extends Controller
             return redirect(route('events.show', $event))->with('message', $exception->getMessage());
         }
         
-        return redirect(route('events.show', $event));
+        return redirect(route('events.show', $event))->with('message', 'Trainer removed from event!');
     }
 }
