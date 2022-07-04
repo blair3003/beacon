@@ -58,7 +58,7 @@
                             <table class="w-full table-fixed">
                                 <thead class="text-left">
                                     <tr>
-                                        <th class="w-25">Name</th>
+                                        <th class="w-1/4">Name</th>
                                         <th>Email</th>
                                         <th>Certificate</th>
                                         <th></th>
@@ -138,7 +138,7 @@
                             <table class="w-full table-fixed">
                                 <thead class="text-left">
                                     <tr>
-                                        <th class="w-25">Name</th>
+                                        <th class="w-1/4">Name</th>
                                         <th>Email</th>
                                         <th></th>
                                         <th></th>
@@ -152,7 +152,7 @@
                                         <td>{{ $trainer->trainee->email }}</td>
                                         <td></td>
                                         <td class="text-right">
-                                            <form method="POST" action="{{ route('events.trainers.destroy', [$event, $trainee]) }}">
+                                            <form method="POST" action="{{ route('events.trainers.destroy', [$event, $trainer]) }}">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button class="bg-red-300 hover:bg-red-500 font-bold py-2 px-4 rounded" type="submit">X</button>
