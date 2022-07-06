@@ -18,7 +18,7 @@
                                 <label for="first-name">First name:</label>
                                 <input type="text" id="first-name" name="first_name" value="{{ old('first_name') }}">
                                 @error('first_name')
-                                <p>{{ $message }}</p>
+                                <p class="text-red-700 font-semibold">{{ $message }}</p>
                                 @enderror                
                             </div>
 
@@ -26,7 +26,7 @@
                                 <label for="last-name">Last name:</label>
                                 <input type="text" id="last-name" name="last_name" value="{{ old('last_name') }}">
                                 @error('last_name')
-                                <p>{{ $message }}</p>
+                                <p class="text-red-700 font-semibold">{{ $message }}</p>
                                 @enderror                
                             </div>
 
@@ -34,7 +34,7 @@
                                 <label for="email">Email:</label>
                                 <input type="email" id="email" name="email" value="{{ old('email') }}">
                                 @error('email')
-                                <p>{{ $message }}</p>
+                                <p class="text-red-700 font-semibold">{{ $message }}</p>
                                 @enderror                
                             </div>
                             
