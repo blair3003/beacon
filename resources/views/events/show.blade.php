@@ -3,7 +3,7 @@
 
     <x-slot:header>
         <div class="flex items-center">
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">Event #{{ $event->id }}</h2>            
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">{{ $event->course->title }}, {{ $event->full_dates }}</h2>            
         </div>
         <div class="flex space-x-4">
             <a class="bg-yellow-300 hover:bg-yellow-500 font-bold py-2 px-4 rounded" href="/events/{{ $event->id }}/edit">Edit</a>
@@ -31,13 +31,12 @@
                             <strong>Venue:</strong> <a href="/venues/{{ ($event->venue->id) ?? '' }}">{{ ($event->venue->name) ?? '' }}</a>
                         </div>
                         <div>
-                            <strong>Start Date:</strong> {{ $event->start_date }}
+                            <strong>Start Date:</strong> {{ $event->start_date->toFormattedDateString() }}
                         </div>
                         <div>
                             <strong>Start Time:</strong> {{ $event->start_time }}
-                        </div>
                         <div>
-                            <strong>End Date:</strong> {{ $event->end_date }}
+                            <strong>End Date:</strong> {{ $event->end_date->toFormattedDateString() }}
                         </div>
                         <div>
                             <strong>End Time:</strong> {{ $event->end_time }}

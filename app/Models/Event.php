@@ -2,12 +2,20 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Event extends Model
 {
     use HasFactory;
+
+    protected $dates = [
+        'start_date',
+        'end_date',
+        'created_at',
+        'updated_at'
+    ];
 
     protected $fillable = [
         'course_id',
@@ -18,6 +26,14 @@ class Event extends Model
         'end_time',
         'notes'
     ];
+
+    /**
+     * Get a combined version of the dates for the event.
+     */
+    public function getFullDatesAttribute()
+    {
+        return $this->start_date->format('M j') . " - " . $this->end_date->format('M j Y');
+    }
 
     /**
      * Get the course for the event.
