@@ -22,6 +22,7 @@ Route::middleware('auth')->group(function () {
     Route::resources([
         'certificates' => \App\Http\Controllers\CertificateController::class,
         'courses' => \App\Http\Controllers\CourseController::class,
+        'documents' => \App\Http\Controllers\DocumentController::class,
         'events' => \App\Http\Controllers\EventController::class,
         'events.trainees' => \App\Http\Controllers\EventTraineeController::class,
         'events.trainers' => \App\Http\Controllers\EventTrainerController::class,

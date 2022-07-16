@@ -98,6 +98,48 @@
                     </section>
                     @endif
 
+                    <section class="mb-4 pb-4 border-b border-gray-200">
+                        <div class="flex justify-between mb-4">
+                            <h3 class="font-semibold text-lg text-gray-800 leading-tight">Documents</h3>
+                        </div>
+                        <div>
+
+                             <form method="POST" action="/documents" enctype="multipart/form-data">
+                                @csrf
+
+                                <input type="file" name="document">
+                                @error('document')
+                                <p class="text-red-700 font-semibold">{{ $message }}</p>
+                                @enderror
+
+                                <input type="hidden" name="documentable_type" value="App\Models\Trainee">
+                                <input type="hidden" name="documentable_id" value="{{ $trainee->id }}">
+
+                                <button type="submit">Add document</button>
+                            </form>
+                        </div>
+                        <div>
+                            @unless($trainee->documents->isEmpty())
+                            <table class="w-full table-fixed">
+                                <thead class="text-left">
+                                    <tr>
+                                        <th class="w-1/4">Document</th>
+                                    </tr>                                    
+                                </thead>
+                                <tbody>
+                                    @foreach($trainee->documents as $document)
+                                    <tr>
+                                        <td><a href="#">{{ $document->title }}</a></td>
+                                    </tr>
+                                    @endforeach                                    
+                                </tbody>
+                            </table>
+                            @else
+                            <p>No documents yet.</p>
+                            @endunless
+                        </div>
+                    </section>
+
 
 
 

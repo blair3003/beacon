@@ -65,4 +65,12 @@ class Trainee extends Model
     {
         return $this->hasMany(Certificate::class);
     }
+
+    /**
+     * Get all of the documents for the trainee.
+     */
+    public function documents()
+    {
+        return $this->morphMany(Document::class, 'documentable');
+    }
 }
