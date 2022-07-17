@@ -32,6 +32,15 @@ Route::middleware('auth')->group(function () {
     ]);
 });
 
+Route::get('/search', function () {
+    return view('search.results', [
+        'events' => \App\Models\Event::latest()->filter(request(['q']))->get(),
+        'trainees' => \App\Models\Trainee::latest()->filter(request(['q']))->get(),
+        'trainers' => \App\Models\Trainer::latest()->filter(request(['q']))->get(),
+        'venues' => \App\Models\Venue::latest()->filter(request(['q']))->get()
+    ]);
+})->middleware(['auth'])->name('search');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

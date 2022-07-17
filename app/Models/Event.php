@@ -27,6 +27,30 @@ class Event extends Model
         'notes'
     ];
 
+    public function scopeFilter($query, array $filters) {
+
+        if ($filters['q'] ?? false) {
+            $query->with('course', 'trainees', 'trainers', 'venue')
+                  ->whereHas('course', function($q) {
+                      $q->where('title', 'like', '%' . request('q') . '%');
+                  })
+                  ->orWhereHas('trainees', function($q) {
+                      $q->where('first_name', 'like', '%' . request('q') . '%')
+                        ->orWhere('last_name', 'like', '%' . request('q') . '%');
+                  })
+                  ->orWhereHas('trainers', function($q) {
+                      $q->with('trainee')->whereHas('trainee', function($r) {
+                            $r->where('first_name', 'like', '%' . request('q') . '%')
+                              ->orWhere('last_name', 'like', '%' . request('q') . '%');
+                        });
+                  })
+                  ->orWhereHas('venue', function($q) {
+                      $q->where('name', 'like', '%' . request('q') . '%');
+                  });
+        }
+
+    }
+
     /**
      * Get a combined version of the dates for the event.
      */

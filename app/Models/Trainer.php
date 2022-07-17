@@ -13,6 +13,16 @@ class Trainer extends Model
         'trainee_id'
     ];
 
+    public function scopeFilter($query, array $filters) {
+
+        if ($filters['q'] ?? false) {
+            $query->with('trainee')->whereHas('trainee', function($q) {
+                $q->where('first_name', 'like', '%' . request('q') . '%')
+                  ->orWhere('last_name', 'like', '%' . request('q') . '%');
+            });
+        }
+    }
+
     /**
      * Get the trainee associated with the trainer.
      */

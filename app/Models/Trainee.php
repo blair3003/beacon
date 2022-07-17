@@ -25,6 +25,14 @@ class Trainee extends Model
         'zip'
     ];
 
+    public function scopeFilter($query, array $filters) {
+
+        if ($filters['q'] ?? false) {
+            $query->where('first_name', 'like', '%' . request('q') . '%')
+                  ->orWhere('last_name', 'like', '%' . request('q') . '%');
+        }
+    }
+
     /**
      * Get the trainee's full name.
      */

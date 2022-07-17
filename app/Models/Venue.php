@@ -10,8 +10,15 @@ class Venue extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
+        'name'
     ];
+
+    public function scopeFilter($query, array $filters) {
+
+        if ($filters['q'] ?? false) {
+            $query->where('name', 'like', '%' . request('q') . '%');
+        }
+    }
 
     /**
      * Get the events for the course.
