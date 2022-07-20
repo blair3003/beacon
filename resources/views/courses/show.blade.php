@@ -7,16 +7,13 @@
         </div>
         <div class="flex space-x-4">
             <x-link url="{{ route('courses.edit', $course->id) }}" class="!bg-yellow-400">Edit</x-link>
-
             <form method="POST" action="{{ route('courses.show', $course->id) }}">
                 @csrf
                 @method('DELETE')
                 <x-button class="!bg-red-600">Delete</x-button>
             </form>
-
             <x-link url="{{ route('courses.index') }}" class="!text-black !bg-white hover:bg-slate-50">Back</x-link>                     
         </div>
-        
     </x-slot>
 
     <div class="py-12">

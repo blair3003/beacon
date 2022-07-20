@@ -10,22 +10,21 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <table>
+                    <table class="w-full mb-6">
                         <thead>
-                            <tr>
-                                <th>Title</th>
-                                <th>Description</th>
+                            <tr class="text-left p-2">
+                                <th class="p-2">Title</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($courses as $course)
-                            <tr>
-                                <td><a href="/courses/{{ $course->id }}">{{ $course->title }}</a></td>
-                                <td>{{ $course->description }}</td>                             
+                            <tr class="hover:bg-slate-50">
+                                <td class="p-2"><a href="{{ route('courses.show', $course->id) }}" class="text-blue-400 hover:text-blue-500">{{ $course->title }}</a></td>
                             </tr>
                             @endforeach                            
                         </tbody>
                     </table>
+                    <div>{{ $courses->links() }}</div>
                 </div>
             </div>
         </div>

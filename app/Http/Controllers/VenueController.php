@@ -17,7 +17,7 @@ class VenueController extends Controller
     public function index()
     {
         return view('venues.index', [
-            'venues' => Venue::all()
+            'venues' => Venue::orderBy('name', 'asc')->paginate(15)
         ]);
     }
 

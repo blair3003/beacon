@@ -11,28 +11,20 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <table class="w-full ">
+                    <table class="w-full mb-6">
                         <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Course</th>
-                                <th>Venue</th>
-                                <th>Start Date</th>
-                                <th>Start Time</th>
-                                <th>End Date</th>
-                                <th>End Time</th>
+                            <tr class="text-left p-2">
+                                <th class="p-2">Course</th>
+                                <th class="p-2">Venue</th>
+                                <th class="p-2">Date</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($events as $event)
-                            <tr>
-                                <td><a href="/events/{{ $event->id }}">{{ $event->id }}</a></td>
-                                <td>{{ $event->course->title }}</td>
-                                <td>{{ ($event->venue->name) ?? '' }}</td>
-                                <td>{{ $event->start_date }}</td>                                
-                                <td>{{ $event->start_time }}</td>                                
-                                <td>{{ $event->end_date }}</td>                                
-                                <td>{{ $event->end_time }}</td>                                
+                            <tr class="hover:bg-slate-50">
+                                <td class="p-2"><a href="{{ route('events.show', $event->id) }}" class="text-blue-400 hover:text-blue-500">{{ $event->course->title }}</a></td>
+                                <td class="p-2">{{ ($event->venue->name) ?? '' }}</td> 
+                                <td class="p-2">{{ $event->full_dates }}</td>                             
                             </tr>
                             @endforeach                            
                         </tbody>

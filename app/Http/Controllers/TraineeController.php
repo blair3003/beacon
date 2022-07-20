@@ -18,7 +18,7 @@ class TraineeController extends Controller
     public function index()
     {
         return view('trainees.index', [
-            'trainees' => Trainee::paginate(15)
+            'trainees' => Trainee::orderBy('last_name', 'asc')->orderBy('first_name', 'asc')->paginate(15)
         ]);
     }
 

@@ -17,7 +17,7 @@ class TrainerController extends Controller
     public function index()
     {
         return view('trainers.index', [
-            'trainers' => Trainer::with('trainee')->paginate(15)
+            'trainers' => Trainer::join('trainees', 'trainers.trainee_id', '=', 'trainees.id')->orderBy('trainees.last_name')->orderBy('trainees.first_name')->paginate(15)
         ]);
     }
 
