@@ -1,19 +1,19 @@
 <x-app-layout>
     <x-slot:title>Trainee</x-slot>
 
-    <x-slot:header>
+    <x-slot:header>        
         <div class="flex items-center">
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">{{ $trainee->full_name }}</h2>            
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">{{ $trainee->full_name }}</h2>
         </div>
         <div class="flex space-x-4">
-            <a class="bg-yellow-300 hover:bg-yellow-500 font-bold py-2 px-4 rounded" href="{{ route('trainees.edit', $trainee) }}">Edit</a>
-            <form method="POST" action="{{ route('trainees.show', $trainee) }}">
+            <x-link url="{{ route('trainees.edit', $trainee->id) }}" class="!bg-yellow-400">Edit</x-link>
+            <form method="POST" action="{{ route('trainees.show', $trainee->id) }}">
                 @csrf
                 @method('DELETE')
-                <button class="bg-red-300 hover:bg-red-500 font-bold py-2 px-4 rounded" type="submit">Delete</button>
+                <x-button class="!bg-red-600">Delete</x-button>
             </form>
-            <a class="bg-white hover:bg-slate-50 font-bold py-2 px-4 rounded" href="{{ route('trainees.index') }}">Back</a>
-        </div>        
+            <x-link url="{{ route('trainees.index') }}" class="!text-black !bg-white hover:bg-slate-50">Back</x-link>                     
+        </div>      
     </x-slot>
 
     <div class="py-12">

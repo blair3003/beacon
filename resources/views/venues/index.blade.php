@@ -2,8 +2,8 @@
     <x-slot:title>Venues</x-slot>
 
     <x-slot:header>
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">Venues</h2>
-        <a href="/venues/create">Create new venue</a>
+        <h2 class="flex items-center font-semibold text-xl text-gray-800 leading-tight">Venues</h2>
+        <x-link url="{{ route('venues.create') }}">Create new Venue</x-link>
     </x-slot>
 
     <div class="py-12">

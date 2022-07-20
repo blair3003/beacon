@@ -6,15 +6,15 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">{{ $event->course->title }}, {{ $event->full_dates }}</h2>            
         </div>
         <div class="flex space-x-4">
-            <a class="bg-yellow-300 hover:bg-yellow-500 font-bold py-2 px-4 rounded" href="/events/{{ $event->id }}/edit">Edit</a>
+            <x-link url="{{ route('events.edit', $event->id) }}" class="!bg-yellow-400">Edit</x-link>
 
-            <form method="POST" action="/events/{{ $event->id }}">
+            <form method="POST" action="{{ route('events.show', $event->id) }}">
                 @csrf
                 @method('DELETE')
-                <button class="bg-red-300 hover:bg-red-500 font-bold py-2 px-4 rounded" type="submit">Delete</button>
+                <x-button class="!bg-red-600">Delete</x-button>
             </form>
 
-            <a class="bg-white hover:bg-slate-50 font-bold py-2 px-4 rounded" href="/events">Back</a>                     
+            <x-link url="{{ route('events.index') }}" class="!text-black !bg-white hover:bg-slate-50">Back</x-link>                     
         </div>
     </x-slot>
 
