@@ -24,9 +24,33 @@
                             </div>
 
                             <div>
+                                <label for="code">Code:</label>
+                                <input type="text" id="code" name="code" value="{{ $course->code }}">
+                                @error('code')
+                                <p>{{ $message }}</p>
+                                @enderror                
+                            </div>
+
+                            <div>
                                 <label for="description">Description:</label>
                                 <textarea id="description" name="description">{{ $course->description }}</textarea>
                                 @error('description')
+                                <p>{{ $message }}</p>
+                                @enderror                
+                            </div>
+
+                            <div>
+                                <label for="max_trainees">Max trainees:</label>
+                                <input type="number" id="max_trainees" name="max_trainees" min="1" value="{{ $course->max_trainees }}">
+                                @error('max_trainees')
+                                <p>{{ $message }}</p>
+                                @enderror                
+                            </div>
+
+                            <div>
+                                <label for="cert_period">Certification period:</label>
+                                <input type="number" id="cert_period" name="cert_period" min="1" value="{{ $course->cert_period }}">
+                                @error('cert_period')
                                 <p>{{ $message }}</p>
                                 @enderror                
                             </div>

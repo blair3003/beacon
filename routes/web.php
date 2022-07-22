@@ -14,9 +14,6 @@ use App\Http\Controllers\EventController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Route::middleware('auth')->group(function () {
     Route::resources([
@@ -41,9 +38,12 @@ Route::get('/search', function () {
     ]);
 })->middleware(['auth'])->name('search');
 
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+Route::get('/', function () {
+    return redirect(route('dashboard'));
+});
 
 require __DIR__.'/auth.php';

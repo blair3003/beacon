@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class CourseUpdateRequest extends FormRequest
 {
@@ -24,8 +25,11 @@ class CourseUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required',
-            'description' => 'nullable'
+            'title' => ['required', Rule::unique('courses')->ignore($this->course)],
+            'code' => ['required', Rule::unique('courses')->ignore($this->course)],
+            'description' => 'nullable',
+            'max_trainees' => 'required',
+            'cert_period' => 'required'
         ];
     }
 }

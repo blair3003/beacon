@@ -18,7 +18,10 @@ class CourseFactory extends Factory
     {
         return [
             'title' => $this->faker->unique()->catchPhrase(),
-            'description' => $this->faker->text()
+            'code' => strtoupper($this->faker->unique()->lexify('???')),
+            'description' => $this->faker->text(),
+            'max_trainees' => 30,
+            'cert_period' => 4
         ];
     }
 }

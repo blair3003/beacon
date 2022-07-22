@@ -11,7 +11,10 @@ class Course extends Model
 
     protected $fillable = [
         'title',
-        'description'
+        'code',
+        'description',
+        'max_trainees',
+        'cert_period'
     ];
 
     /**

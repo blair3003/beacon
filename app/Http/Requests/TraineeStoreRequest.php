@@ -26,7 +26,15 @@ class TraineeStoreRequest extends FormRequest
         return [
             'first_name' => 'required',
             'last_name' => 'required',
-            'email' => 'required|unique:trainees'
+            'email' => 'required|unique:trainees',
+            'mobile' => 'nullable',
+            'tel' => 'nullable',
+            'address_1' => 'nullable',
+            'address_2' => 'nullable',
+            'address_3' => 'nullable',
+            'city' => 'nullable',
+            'country' => 'nullable',
+            'zip' => 'nullable'
         ];
     }
 }

@@ -22,6 +22,78 @@
                                 <p>{{ $message }}</p>
                                 @enderror                
                             </div>
+
+                            <div>
+                                <label for="email">Email:</label>
+                                <input type="email" id="email" name="email" value="{{ $venue->email }}">
+                                @error('email')
+                                <p>{{ $message }}</p>
+                                @enderror                
+                            </div>
+
+                            <div>
+                                <label for="tel">Tel:</label>
+                                <input type="text" id="tel" name="tel" value="{{ $venue->tel }}">
+                                @error('tel')
+                                <p>{{ $message }}</p>
+                                @enderror                
+                            </div>
+
+                            <div>
+                                <label for="address_1">Address 1:</label>
+                                <input type="text" id="address_1" name="address_1" value="{{ $venue->address_1 }}">
+                                @error('address_1')
+                                <p>{{ $message }}</p>
+                                @enderror                
+                            </div>
+
+                            <div>
+                                <label for="address_2">Address 2:</label>
+                                <input type="text" id="address_2" name="address_2" value="{{ $venue->address_2 }}">
+                                @error('address_2')
+                                <p>{{ $message }}</p>
+                                @enderror                
+                            </div>
+
+                            <div>
+                                <label for="address_3">Address 3:</label>
+                                <input type="text" id="address_3" name="address_3" value="{{ $venue->address_3 }}">
+                                @error('address_3')
+                                <p>{{ $message }}</p>
+                                @enderror                
+                            </div>
+
+                            <div>
+                                <label for="city">City:</label>
+                                <input type="text" id="city" name="city" value="{{ $venue->city }}">
+                                @error('city')
+                                <p>{{ $message }}</p>
+                                @enderror                
+                            </div>
+
+                            <div>
+                                <label for="country">Country:</label>
+                                <input type="text" id="country" name="country" value="{{ $venue->country }}">
+                                @error('country')
+                                <p>{{ $message }}</p>
+                                @enderror                
+                            </div>
+
+                            <div>
+                                <label for="zip">Zip:</label>
+                                <input type="text" id="zip" name="zip" value="{{ $venue->zip }}">
+                                @error('zip')
+                                <p>{{ $message }}</p>
+                                @enderror                
+                            </div>
+
+                            <div>
+                                <label for="notes">Notes:</label>
+                                <textarea id="notes" name="notes">{{ $venue->notes }}</textarea>
+                                @error('notes')
+                                <p>{{ $message }}</p>
+                                @enderror                
+                            </div>
                             
                         </fieldset>
 

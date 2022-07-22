@@ -24,8 +24,11 @@ class CourseStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required',
-            'description' => 'nullable'
+            'title' => 'required|unique:courses',
+            'code' => 'required|unique:courses',
+            'description' => 'nullable',
+            'max_trainees' => 'required',
+            'cert_period' => 'required'
         ];
     }
 }

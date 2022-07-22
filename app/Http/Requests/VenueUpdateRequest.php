@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class VenueUpdateRequest extends FormRequest
 {
@@ -24,7 +25,16 @@ class VenueUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required'
+            'name' => ['required', Rule::unique('venues')->ignore($this->venue)],
+            'email' => 'nullable',
+            'tel' => 'nullable',
+            'address_1' => 'nullable',
+            'address_2' => 'nullable',
+            'address_3' => 'nullable',
+            'city' => 'nullable',
+            'country' => 'nullable',
+            'zip' => 'nullable',
+            'notes' => 'nullable'
         ];
     }
 }

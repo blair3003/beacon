@@ -10,7 +10,16 @@ class Venue extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name'
+        'name',
+        'email',
+        'tel',
+        'address_1',
+        'address_2',
+        'address_3',
+        'city',
+        'country',
+        'zip',
+        'notes'
     ];
 
     public function scopeFilter($query, array $filters) {

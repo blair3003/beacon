@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class TraineeUpdateRequest extends FormRequest
 {
@@ -26,7 +27,15 @@ class TraineeUpdateRequest extends FormRequest
         return [
             'first_name' => 'required',
             'last_name' => 'required',
-            'email' => ['required', Rule::unique('trainees')->ignore($trainee)]
+            'email' => ['required', Rule::unique('trainees')->ignore($this->trainee)],
+            'mobile' => 'nullable',
+            'tel' => 'nullable',
+            'address_1' => 'nullable',
+            'address_2' => 'nullable',
+            'address_3' => 'nullable',
+            'city' => 'nullable',
+            'country' => 'nullable',
+            'zip' => 'nullable'
         ];
     }
 }

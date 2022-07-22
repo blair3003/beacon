@@ -38,6 +38,70 @@
                                 <p>{{ $message }}</p>
                                 @enderror                
                             </div>
+
+                            <div>
+                                <label for="mobile">Mobile:</label>
+                                <input type="text" id="mobile" name="mobile" value="{{ $trainee->mobile }}">
+                                @error('mobile')
+                                <p>{{ $message }}</p>
+                                @enderror                
+                            </div>
+
+                            <div>
+                                <label for="tel">Tel:</label>
+                                <input type="text" id="tel" name="tel" value="{{ $trainee->tel }}">
+                                @error('tel')
+                                <p>{{ $message }}</p>
+                                @enderror                
+                            </div>
+
+                            <div>
+                                <label for="address_1">Address 1:</label>
+                                <input type="text" id="address_1" name="address_1" value="{{ $trainee->address_1 }}">
+                                @error('address_1')
+                                <p>{{ $message }}</p>
+                                @enderror                
+                            </div>
+
+                            <div>
+                                <label for="address_2">Address 2:</label>
+                                <input type="text" id="address_2" name="address_2" value="{{ $trainee->address_2 }}">
+                                @error('address_2')
+                                <p>{{ $message }}</p>
+                                @enderror                
+                            </div>
+
+                            <div>
+                                <label for="address_3">Address 3:</label>
+                                <input type="text" id="address_3" name="address_3" value="{{ $trainee->address_3 }}">
+                                @error('address_3')
+                                <p>{{ $message }}</p>
+                                @enderror                
+                            </div>
+
+                            <div>
+                                <label for="city">City:</label>
+                                <input type="text" id="city" name="city" value="{{ $trainee->city }}">
+                                @error('city')
+                                <p>{{ $message }}</p>
+                                @enderror                
+                            </div>
+
+                            <div>
+                                <label for="country">Country:</label>
+                                <input type="text" id="country" name="country" value="{{ $trainee->country }}">
+                                @error('country')
+                                <p>{{ $message }}</p>
+                                @enderror                
+                            </div>
+
+                            <div>
+                                <label for="zip">Zip:</label>
+                                <input type="text" id="zip" name="zip" value="{{ $trainee->zip }}">
+                                @error('zip')
+                                <p>{{ $message }}</p>
+                                @enderror                
+                            </div>
                             
                         </fieldset>
 
