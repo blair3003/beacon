@@ -2,7 +2,12 @@
     <x-slot:title>Create Course</x-slot>
 
     <x-slot:header>
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">Create Course</h2>
+        <div class="flex items-center">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">Create Course</h2>
+        </div>
+        <div class="flex space-x-4">
+            <x-link url="{{ route('courses.index') }}" class="!text-black !bg-white hover:bg-slate-50">Back</x-link>                     
+        </div>
     </x-slot>
 
     <div class="py-12">
@@ -12,51 +17,51 @@
                     <form method="POST" action="/courses">
                         @csrf
                         <fieldset>
-                            <legend>Enter course details</legend>
+                            <legend class="mb-4 font-semibold text-2xl text-gray-800 leading-tight">Enter course details</legend>
 
-                            <div>
-                                <label for="title">Title:</label>
-                                <input type="text" id="title" name="title" value="{{ old('title') }}">
+                            <div class="flex mb-2 flex-wrap">
+                                <label for="title" class="basis-1/4 shrink-0">Title:</label>
+                                <input type="text" id="title" name="title" value="{{ old('title') }}" class="border-0 bg-slate-100 max-w-md grow">
                                 @error('title')
-                                <p>{{ $message }}</p>
+                                <p class="basis-full text-red-600 shrink-0">{{ $message }}</p>
                                 @enderror                
                             </div>
 
-                            <div>
-                                <label for="code">Code:</label>
-                                <input type="text" id="code" name="code" value="{{ old('code') }}">
+                            <div class="flex mb-2 flex-wrap">
+                                <label for="code" class="basis-1/4 shrink-0">Code:</label>
+                                <input type="text" id="code" name="code" value="{{ old('code') }}" class="border-0 bg-slate-100 max-w-md grow">
                                 @error('code')
-                                <p>{{ $message }}</p>
+                                <p class="basis-full text-red-600 shrink-0">{{ $message }}</p>
                                 @enderror                
                             </div>
 
-                            <div>
-                                <label for="description">Description:</label>
-                                <textarea id="description" name="description">{{ old('description') }}</textarea>
+                            <div class="flex mb-2 flex-wrap">
+                                <label for="description" class="basis-1/4 shrink-0">Description:</label>
+                                <textarea id="description" name="description" class="border-0 bg-slate-100 max-w-md grow">{{ old('description') }}</textarea>
                                 @error('description')
-                                <p>{{ $message }}</p>
+                                <p class="basis-full text-red-600 shrink-0">{{ $message }}</p>
                                 @enderror                
                             </div>
 
-                            <div>
-                                <label for="max_trainees">Max trainees:</label>
-                                <input type="number" id="max_trainees" name="max_trainees" min="1" value="{{ old('max_trainees') }}">
+                            <div class="flex mb-2 flex-wrap">
+                                <label for="max_trainees" class="basis-1/4 shrink-0">Max trainees:</label>
+                                <input type="number" id="max_trainees" name="max_trainees" min="1" value="{{ old('max_trainees') }}" class="border-0 bg-slate-100 max-w-md grow">
                                 @error('max_trainees')
-                                <p>{{ $message }}</p>
+                                <p class="basis-full text-red-600 shrink-0">{{ $message }}</p>
                                 @enderror                
                             </div>
 
-                            <div>
-                                <label for="cert_period">Certification period:</label>
-                                <input type="number" id="cert_period" name="cert_period" min="1" value="{{ old('cert_period') }}">
+                            <div class="flex mb-2 flex-wrap">
+                                <label for="cert_period" class="basis-1/4 shrink-0">Certification period:</label>
+                                <input type="number" id="cert_period" name="cert_period" min="1" value="{{ old('cert_period') }}" class="border-0 bg-slate-100 max-w-md grow">
                                 @error('cert_period')
-                                <p>{{ $message }}</p>
+                                <p class="basis-full text-red-600 shrink-0">{{ $message }}</p>
                                 @enderror                
                             </div>
                             
                         </fieldset>
 
-                        <button type="submit">Create</button>    
+                        <x-button>Create</x-button>    
                     </form>
                 </div>
             </div>

@@ -37,9 +37,12 @@ class EventTrainerController extends Controller
     {
         return view('events.trainers.create', [
             'event' => $event,
-            'trainers' => Trainer::whereNotIn('id', $event->trainers->pluck('id'))->with('trainee')->get()
+            'trainers' => Trainer::whereNotIn('id', $event->trainers->pluck('id'))->select('trainers.*', 'trainees.first_name', 'trainees.last_name', 'trainees.email')->join('trainees', 'trainers.trainee_id', '=', 'trainees.id')->orderBy('trainees.last_name')->orderBy('trainees.first_name')->get()
         ]);
     }
+
+
+
 
     /**
      * Store a newly created resource in storage.
