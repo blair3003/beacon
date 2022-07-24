@@ -19,7 +19,7 @@
                         </thead>
                         <tbody>
                             @foreach($trainees as $trainee)
-                            <tr class="hover:bg-slate-50">
+                            <tr class="hover:bg-slate-50 border-b border-gray-200">
                                 <td class="p-2"><a href="{{ route('trainees.show', $trainee->id) }}" class="text-blue-400 hover:text-blue-500">{{ $trainee->full_name }}</a></td>
                                 <td class="p-2"><a href="mailto:{{ $trainee->email }}" class="text-blue-400 hover:text-blue-500">{{ $trainee->email }}</a></td>
                             </tr>

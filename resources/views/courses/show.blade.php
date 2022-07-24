@@ -64,7 +64,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($course->events as $event)
+                                    @foreach($course->events->sortByDesc('start_date') as $event)
                                     <tr class="hover:bg-slate-50">
                                         <td class="p-2"><a href="{{ route('events.show', $event->id) }}" class="text-blue-400 hover:text-blue-500">{{ $event->venue->name }}</a></td>
                                         <td class="p-2">{{ $event->full_dates }}</td>

@@ -57,9 +57,7 @@ class VenueController extends Controller
     public function show(Venue $venue)
     {
         return view('venues.show', [
-            'venue' => $venue->load(['events' => function ($query) {
-                $query->orderBy('start_date', 'desc');
-            }])
+            'venue' => $venue->load('events')
         ]);
     }
 

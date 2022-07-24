@@ -10,15 +10,14 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
 
+                    <section class="mb-8 pb-4 border-b border-gray-200">
+
+                        <x-search-box />
 
 
-                    {{-- Search box to be made a component/partial --}}
 
-                    <form action="/search" method="GET">
-                        <input type="text" name="q" required>
-                        <button type="submit">Search</button>
-                    </form>
-                    
+                    </section>
+                        
 
 
 

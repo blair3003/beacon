@@ -53,9 +53,7 @@ class CourseController extends Controller
     public function show(Course $course)
     {
         return view('courses.show', [
-            'course' => $course->load(['events' => function ($query) {
-                $query->orderBy('start_date', 'desc');
-            }])
+            'course' => $course->load('events')
         ]);
     }
 

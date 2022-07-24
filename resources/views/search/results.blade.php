@@ -3,7 +3,7 @@
 
     <x-slot:header>
         <div class="flex items-center">
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">Searching for {{ request('q') }}</h2>            
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">Search results for "{{ request('q') }}"</h2>            
         </div>    
     </x-slot>
 
@@ -14,51 +14,54 @@
 
                 	@unless($events->isEmpty())
                     <section class="mb-4 pb-4 border-b border-gray-200">
-                        <h3 class="mb-2 font-semibold text-lg text-gray-800 leading-tight">Events</h3>
+                        <h3 class="mb-4 font-semibold text-2xl text-gray-800 leading-tight">Events</h3>
                         <ul>
                         	@foreach($events as $event)
-                        	<li><a href="{{ route('events.show', $event->id) }}">{{ $event->course->title }} {{ $event->full_dates }}</a></li>
+                        	<li class="p-2"><a href="{{ route('events.show', $event->id) }}" class="text-blue-400 hover:text-blue-500">{{ $event->course->title }}, {{ $event->full_dates }}</a></li>
                         	@endforeach
                         </ul>
                     </section>
-                    @else
                     @endunless
 
                 	@unless($trainees->isEmpty())
                     <section class="mb-4 pb-4 border-b border-gray-200">
-                        <h3 class="mb-2 font-semibold text-lg text-gray-800 leading-tight">Trainees</h3>
+                        <h3 class="mb-4 font-semibold text-2xl text-gray-800 leading-tight">Trainees</h3>
                         <ul>
                         	@foreach($trainees as $trainee)
-                        	<li><a href="{{ route('trainees.show', $trainee->id) }}">{{ $trainee->full_name }}</a></li>
+                        	<li class="p-2"><a href="{{ route('trainees.show', $trainee->id) }}" class="text-blue-400 hover:text-blue-500">{{ $trainee->full_name }} &lt;{{ $trainee->email }}&gt;</a></li>
                         	@endforeach
                         </ul>
                     </section>
-                    @else
                     @endunless
 
                 	@unless($trainers->isEmpty())
                     <section class="mb-4 pb-4 border-b border-gray-200">
-                        <h3 class="mb-2 font-semibold text-lg text-gray-800 leading-tight">Trainers</h3>
+                        <h3 class="mb-4 font-semibold text-2xl text-gray-800 leading-tight">Trainers</h3>
                         <ul>
                         	@foreach($trainers as $trainer)
-                        	<li><a href="{{ route('trainers.show', $trainer->id) }}">{{ $trainer->trainee->full_name }}</a></li>
+                        	<li class="p-2"><a href="{{ route('trainers.show', $trainer->id) }}" class="text-blue-400 hover:text-blue-500">{{ $trainer->trainee->full_name }} &lt;{{ $trainer->trainee->email }}&gt;</a></li>
                         	@endforeach
                         </ul>
                     </section>
-                    @else
                     @endunless
 
                 	@unless($venues->isEmpty())
                     <section class="mb-4 pb-4 border-b border-gray-200">
-                        <h3 class="mb-2 font-semibold text-lg text-gray-800 leading-tight">Venues</h3>
+                        <h3 class="mb-4 font-semibold text-2xl text-gray-800 leading-tight">Venues</h3>
                         <ul>
                         	@foreach($venues as $venue)
-                        	<li><a href="{{ route('venues.show', $venue->id) }}">{{ $venue->name }}</a></li>
+                        	<li class="p-2"><a href="{{ route('venues.show', $venue->id) }}" class="text-blue-400 hover:text-blue-500">{{ $venue->name }}</a></li>
                         	@endforeach
                         </ul>
                     </section>
-                    @else
                     @endunless
+
+                    @if($events->isEmpty() && $trainees->isEmpty() && $trainers->isEmpty() && $venues->isEmpty())
+                    <section class="mb-4 pb-4 border-gray-200">
+                        <h3 class="font-semibold text-2xl text-gray-800 leading-tight">No results...</h3>
+                    </section>
+
+                    @endif
 
 
 

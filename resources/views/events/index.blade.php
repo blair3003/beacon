@@ -21,7 +21,7 @@
                         </thead>
                         <tbody>
                             @foreach($events as $event)
-                            <tr class="hover:bg-slate-50">
+                            <tr class="hover:bg-slate-50 border-b border-gray-200">
                                 <td class="p-2"><a href="{{ route('events.show', $event->id) }}" class="text-blue-400 hover:text-blue-500">{{ $event->course->title }}</a></td>
                                 <td class="p-2">{{ ($event->venue->name) ?? '' }}</td> 
                                 <td class="p-2">{{ $event->full_dates }}</td>                             

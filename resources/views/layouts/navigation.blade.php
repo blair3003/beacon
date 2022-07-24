@@ -11,7 +11,7 @@
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="hidden space-x-8 lg:-my-px lg:ml-10 lg:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">Dashboard</x-nav-link>
                     <x-nav-link :href="route('events.index')" :active="request()->routeIs('events.*')">Events</x-nav-link>
                     <x-nav-link :href="route('courses.index')" :active="request()->routeIs('courses.*')">Courses</x-nav-link>
@@ -19,6 +19,11 @@
                     <x-nav-link :href="route('trainees.index')" :active="request()->routeIs('trainees.*')">Trainees</x-nav-link>
                     <x-nav-link :href="route('trainers.index')" :active="request()->routeIs('trainers.*')">Trainers</x-nav-link>
                 </div>
+
+                <div class="ml-10 self-center">
+                    <x-search-box />
+                </div>
+
             </div>
 
             <!-- Settings Dropdown -->

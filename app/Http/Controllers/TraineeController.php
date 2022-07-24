@@ -54,21 +54,7 @@ class TraineeController extends Controller
     public function show(Trainee $trainee)
     {
         return view('trainees.show', [
-            'trainee' => $trainee->load([
-                'events' => function ($query) {
-                    $query->orderBy('start_date', 'desc');
-                },
-                'trainer.events' => function ($query) {
-                    $query->orderBy('start_date', 'desc');                    
-                }
-            ])
-        ]);
-
-
-        return view('venues.show', [
-            'venue' => $venue->load(['events' => function ($query) {
-                $query->orderBy('start_date', 'desc');
-            }])
+            'trainee' => $trainee->load('events', 'trainer.events')
         ]);
     }
 

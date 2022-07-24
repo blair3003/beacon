@@ -18,7 +18,7 @@
                         </thead>
                         <tbody>
                             @foreach($courses as $course)
-                            <tr class="hover:bg-slate-50">
+                            <tr class="hover:bg-slate-50 border-b border-gray-200">
                                 <td class="p-2"><a href="{{ route('courses.show', $course->id) }}" class="text-blue-400 hover:text-blue-500">{{ $course->title }}</a></td>
                             </tr>
                             @endforeach                            
