@@ -27,10 +27,6 @@ class EventService
             throw new \Exception('Trainee capacity limit reached!');
         }
 
-        // Check for capacity
-
-
-
         $event->trainees()->attach($trainee);
     }
 
