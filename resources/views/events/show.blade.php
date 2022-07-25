@@ -70,7 +70,7 @@
                     <section class="mb-4 pb-4 border-b border-gray-200">
                         <div class="flex justify-between mb-2">
                             <div class="flex">
-                                <h3 class="font-semibold text-2xl text-gray-800 leading-tight">Trainees</h3>            
+                                <h3 class="font-semibold text-2xl text-gray-800 leading-tight">Trainees ({{ $event->trainees->count() }}/{{ $event->course->max_trainees }})</h3>            
                             </div>
                             <div class="flex space-x-4">
                                 <x-link url="{{ route('events.trainees.create', $event) }}">Add Trainee</x-link>
@@ -141,7 +141,7 @@
                     <section class="mb-4 pb-4 border-b border-gray-200">
                         <div class="flex justify-between mb-2">
                             <div class="flex">
-                                <h3 class="font-semibold text-2xl text-gray-800 leading-tight">Trainers</h3>            
+                                <h3 class="font-semibold text-2xl text-gray-800 leading-tight">Trainers ({{ $event->trainers->count() }})</h3>            
                             </div>
                             <div class="flex space-x-4">
                                 <x-link url="{{ route('events.trainers.create', $event) }}">Add Trainer</x-link>

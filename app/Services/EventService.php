@@ -23,6 +23,14 @@ class EventService
             throw new \Exception('Trainee already on event as Trainer!');
         }
 
+        if ($event->trainees->count() >= $event->course->max_trainees) {
+            throw new \Exception('Trainee capacity limit reached!');
+        }
+
+        // Check for capacity
+
+
+
         $event->trainees()->attach($trainee);
     }
 
