@@ -18,7 +18,7 @@ class TrainerFactory extends Factory
     public function definition()
     {
         return [
-            'trainee_id' => Trainee::doesntHave('trainer')->inRandomOrder()->first()->id,
+            'trainee_id' => Trainee::factory(),
         ];
     }
 }

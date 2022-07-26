@@ -55,7 +55,7 @@ class EventTraineeController extends Controller
         try {
             $this->eventService->addTrainee($event->id, $request->trainee_id);
         } catch (\Exception $exception) {
-            return redirect(route('events.trainees.create', $event))->with('message', $exception->getMessage());
+            return back()->with('message', $exception->getMessage());
         }
 
         return redirect(route('events.show', $event))->with('message', 'Trainee added to event!');

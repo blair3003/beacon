@@ -30,7 +30,7 @@
                         </div>
                         <div class="flex mb-1">
                             <div class="font-bold basis-1/4 shrink-0">Email:</div>
-                            <div class="max-w-prose">{{ $trainee->email }}</div>
+                            <div class="max-w-prose"><a href="mailto:{{ $trainee->email }}" class="text-blue-400 hover:text-blue-500">{{ $trainee->email }}</a></div>
                         </div>
                         <div class="flex mb-1">
                             <div class="font-bold basis-1/4 shrink-0">Mobile:</div>

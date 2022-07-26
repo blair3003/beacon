@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,6 +13,8 @@ class Event extends Model
     protected $dates = [
         'start_date',
         'end_date',
+        'start_time',
+        'end_time',
         'created_at',
         'updated_at'
     ];

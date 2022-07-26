@@ -62,6 +62,16 @@ class EventService
             throw new \Exception('Trainer not certified!');
         }
 
+        if ($trainer->trainee->certificates->doesntContain(
+            function ($certificate) use ($event) {
+                return $certificate->event->course->id == $event->course->id
+                    && $certificate->event->end_date
+                        ->addYears($certificate->event->course->cert_period)
+                        ->gt($event->start_date);
+            })) {
+            throw new \Exception('Trainer no longer certified!');
+        }
+
         $event->trainers()->attach($trainer);
     }
 

@@ -47,7 +47,7 @@
 
                         <div class="flex mb-1">
                             <div class="font-bold basis-1/4 shrink-0">Start Time:</div>
-                            <div class="max-w-prose">{{ $event->start_time }}</div>
+                            <div class="max-w-prose">{{ $event->start_time->format('g:i a') }}</div>
                         </div>
 
                         <div class="flex mb-1">
@@ -57,7 +57,7 @@
 
                         <div class="flex mb-1">
                             <div class="font-bold basis-1/4 shrink-0">End Time:</div>
-                            <div class="max-w-prose">{{ $event->end_time }}</div>
+                            <div class="max-w-prose">{{ $event->end_time->format('g:i a') }}</div>
                         </div>
 
                         <div class="flex mb-1">
