@@ -54,7 +54,7 @@ class EventTrainerController extends Controller
     public function store(EventTrainerStoreRequest $request, Event $event)
     {
         try {
-            $this->eventService->addTrainer($event->id, $request->trainer_id);
+            $this->eventService->addTrainer($event, Trainer::find($request->trainer_id));
         } catch (\Exception $exception) {
             return back()->with('message', $exception->getMessage());
         }
@@ -109,7 +109,7 @@ class EventTrainerController extends Controller
     public function destroy(Event $event, Trainer $trainer)
     {
         try {
-            $this->eventService->removeTrainer($event->id, $trainer->id);
+            $this->eventService->removeTrainer($event, $trainer);
         } catch (\Exception $exception) {
             return redirect(route('events.show', $event))->with('message', $exception->getMessage());
         }

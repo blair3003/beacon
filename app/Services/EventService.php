@@ -10,11 +10,8 @@ use App\Models\Venue;
 
 class EventService
 {
-    public function addTrainee($event_id, $trainee_id)
+    public function addTrainee(Event $event, Trainee $trainee)
     {
-        $event = Event::find($event_id);
-        $trainee = Trainee::find($trainee_id);
-
         if ($event->trainees->contains($trainee)) {
             throw new \Exception('Trainee already on event!');
         }
@@ -30,11 +27,8 @@ class EventService
         $event->trainees()->attach($trainee);
     }
 
-    public function removeTrainee($event_id, $trainee_id)
+    public function removeTrainee(Event $event, Trainee $trainee)
     {
-        $event = Event::find($event_id);
-        $trainee = Trainee::find($trainee_id);
-
         if ($event->trainees->doesntContain($trainee)) {            
             throw new \Exception('Trainee not on event!');
         }
@@ -42,11 +36,8 @@ class EventService
         $event->trainees()->detach($trainee);
     }
 
-    public function addTrainer($event_id, $trainer_id)
+    public function addTrainer(Event $event, Trainer $trainer)
     {
-        $event = Event::find($event_id);
-        $trainer = Trainer::find($trainer_id);
-
         if ($event->trainers->contains($trainer)) {
             throw new \Exception('Trainer already on event!');
         }
@@ -75,11 +66,8 @@ class EventService
         $event->trainers()->attach($trainer);
     }
 
-    public function removeTrainer($event_id, $trainer_id)
+    public function removeTrainer(Event $event, Trainer $trainer)
     {
-        $event = Event::find($event_id);
-        $trainer = Trainer::find($trainer_id);
-
         if ($event->trainers->doesntContain($trainer)) {            
             throw new \Exception('Trainer not on event!');
         }

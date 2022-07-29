@@ -44,7 +44,7 @@ class DocumentController extends Controller
     public function store(DocumentStoreRequest $request)
     {
         try {
-            $this->documentService->addDocument($request->file('document'), $request->documentable_type, $request->documentable_id);
+            $this->documentService->addDocument($request->file('document'), $request->documentable_type::find($request->documentable_id));
 
         } catch (\Exception $exception) {
             return back()->with('message', $exception->getMessage());
@@ -95,6 +95,8 @@ class DocumentController extends Controller
      */
     public function destroy(Document $document)
     {
-        //
+        $document->delete();
+
+        return back()->with('message', 'Document removed!');
     }
 }

@@ -8,10 +8,8 @@ use App\Models\Trainee;
 
 class DocumentService
 {
-    public function addDocument($document, $documentable_type, $documentable_id)
+    public function addDocument($document, $documentable)
     {
-
-        $documentable = $documentable_type::find($documentable_id);
 
         if ( $documentable->documents->contains( function($doc) use ($document) {
             return $doc->title == $document->getClientOriginalName();
@@ -25,7 +23,6 @@ class DocumentService
         ]);
 
         $documentable->documents()->save($doc);
-
 
     }
 

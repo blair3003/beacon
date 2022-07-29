@@ -204,7 +204,7 @@
                                         
                                     </div>
 
-                                    <x-button>Add document</x-button>
+                                    <x-button>Add Document</x-button>
                                 </div>
                             </form>
                             
@@ -215,12 +215,22 @@
                                 <thead>
                                     <tr class="text-left p-2">
                                         <th class="p-2">Title</th>
+                                        <th class="p-2"></th>
                                     </tr>                                    
                                 </thead>
                                 <tbody>
                                     @foreach($event->documents as $document)
                                     <tr class="hover:bg-slate-50">
                                         <td class="p-2"><a href="{{ url("/storage/$document->path") }}" target="_blank" class="text-blue-400 hover:text-blue-500">{{ $document->title }}</a></td>
+                                        <td class="p-2 text-right">
+                                            <form method="POST" action="{{ route('documents.destroy', $document) }}">
+                                                @csrf
+                                                @method('DELETE')
+                                                <x-button class="!bg-red-600">Remove Document</x-button>
+                                            </form>                                          
+
+
+                                        </td>  
                                     </tr>
                                     @endforeach                                    
                                 </tbody>
