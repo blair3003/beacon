@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventController;
 
@@ -39,7 +40,9 @@ Route::get('/search', function () {
 })->middleware(['auth'])->name('search');
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('dashboard', [
+        'events' => \App\Models\Event::whereDate('start_date', '>', Carbon::today())->orderBy('start_date', 'asc')->take(5)->get()
+    ]); 
 })->middleware(['auth'])->name('dashboard');
 
 Route::get('/', function () {
