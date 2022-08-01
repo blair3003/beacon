@@ -12,11 +12,8 @@ use Tests\TestCase;
 
 class CertificateControllerTest extends TestCase
 {
-    private function createUser()
-    {
-        return User::factory()->create();
-    }
-
+    use RefreshDatabase;
+    
     /**
      * Test the certificate index route.
      *
@@ -24,7 +21,7 @@ class CertificateControllerTest extends TestCase
      */
     public function test_certificate_index_route_returns_correct_view()
     {
-        $user = $this->createUser();
+        $user = User::factory()->create();
 
         $response = $this->actingAs($user)->get(route('certificates.index'));
         $response->assertStatus(302);
@@ -38,7 +35,7 @@ class CertificateControllerTest extends TestCase
      */
     public function test_certificates_create_route_returns_correct_view()
     {
-        $user = $this->createUser();
+        $user = User::factory()->create();
 
         $response = $this->actingAs($user)->get(route('certificates.create'));
         $response->assertStatus(302);

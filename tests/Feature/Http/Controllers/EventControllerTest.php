@@ -12,27 +12,7 @@ use Tests\TestCase;
 
 class EventControllerTest extends TestCase
 {
-    private function createUser()
-    {
-        return User::factory()->create();
-    }
-
-    private function createCourse()
-    {
-        return Course::factory()->create();
-    }
-    
-    private function createVenue()
-    {
-        return Venue::factory()->create();
-    }
-
-    private function createEvent()
-    {
-        $this->createCourse();
-        $this->createVenue();
-        return Event::factory()->create();
-    }
+    use RefreshDatabase;
 
     /**
      * Test the events index route.
@@ -41,7 +21,7 @@ class EventControllerTest extends TestCase
      */
     public function test_events_index_route_returns_correct_view()
     {
-        $user = $this->createUser();
+        $user = User::factory()->create();
 
         $response = $this->actingAs($user)->get(route('events.index'));
         $response->assertStatus(200);
@@ -55,7 +35,7 @@ class EventControllerTest extends TestCase
      */
     public function test_events_create_route_returns_correct_view()
     {
-        $user = $this->createUser();
+        $user = User::factory()->create();
 
         $response = $this->actingAs($user)->get(route('events.create'));
         $response->assertStatus(200);
@@ -69,12 +49,14 @@ class EventControllerTest extends TestCase
      */
     public function test_events_show_route_returns_correct_view()
     {
-        $user = $this->createUser(); 
-        $event = $this->createEvent();
+        $user = User::factory()->create();
+        Course::factory()->create();
+        Venue::factory()->create();
+        $event = Event::factory()->create();
         
         $response = $this->actingAs($user)->get(route('events.show', $event));
         $response->assertStatus(200);
-        $response->assertViewIs('events.show');
+        $response->assertViewIs('events.show', $event);
     }
 
     /**
@@ -84,12 +66,14 @@ class EventControllerTest extends TestCase
      */
     public function test_events_edit_route_returns_correct_view()
     {
-        $user = $this->createUser(); 
-        $event = $this->createEvent();
+        $user = User::factory()->create();
+        Course::factory()->create();
+        Venue::factory()->create();
+        $event = Event::factory()->create();
         
         $response = $this->actingAs($user)->get(route('events.edit', $event));
         $response->assertStatus(200);
-        $response->assertViewIs('events.edit');
+        $response->assertViewIs('events.edit', $event);
     }
 
 }

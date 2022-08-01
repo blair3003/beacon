@@ -10,15 +10,7 @@ use Tests\TestCase;
 
 class TrainerControllerTest extends TestCase
 {
-    private function createUser()
-    {
-        return User::factory()->create();
-    }
-
-    private function createTrainer()
-    {
-        return Trainer::factory()->create();
-    }
+    use RefreshDatabase;
 
     /**
      * Test the trainers index route.
@@ -27,7 +19,7 @@ class TrainerControllerTest extends TestCase
      */
     public function test_trainers_index_route_returns_correct_view()
     {
-        $user = $this->createUser();
+        $user = User::factory()->create();
 
         $response = $this->actingAs($user)->get(route('trainers.index'));
         $response->assertStatus(200);
@@ -41,7 +33,7 @@ class TrainerControllerTest extends TestCase
      */
     public function test_trainers_create_route_returns_correct_view()
     {
-        $user = $this->createUser();
+        $user = User::factory()->create();
 
         $response = $this->actingAs($user)->get(route('trainers.create'));
         $response->assertStatus(200);
@@ -55,8 +47,8 @@ class TrainerControllerTest extends TestCase
      */
     public function test_trainers_show_route_returns_correct_view()
     {
-        $user = $this->createUser(); 
-        $trainer = $this->createTrainer();
+        $user = User::factory()->create();
+        $trainer = Trainer::factory()->create();
         
         $response = $this->actingAs($user)->get(route('trainers.show', $trainer));
         $response->assertStatus(302);
@@ -70,8 +62,8 @@ class TrainerControllerTest extends TestCase
      */
     public function test_trainers_edit_route_returns_correct_view()
     {
-        $user = $this->createUser(); 
-        $trainer = $this->createTrainer();
+        $user = User::factory()->create();
+        $trainer = Trainer::factory()->create();
         
         $response = $this->actingAs($user)->get(route('trainers.edit', $trainer));
         $response->assertStatus(302);

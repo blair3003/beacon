@@ -12,10 +12,7 @@ use Tests\TestCase;
 
 class DocumentControllerTest extends TestCase
 {
-    private function createUser()
-    {
-        return User::factory()->create();
-    }
+    use RefreshDatabase;
 
     /**
      * Test the documents index route.
@@ -24,7 +21,7 @@ class DocumentControllerTest extends TestCase
      */
     public function test_documents_index_route_returns_correct_view()
     {
-        $user = $this->createUser();
+        $user = User::factory()->create();
 
         $response = $this->actingAs($user)->get(route('documents.index'));
         $response->assertStatus(302);
@@ -38,7 +35,7 @@ class DocumentControllerTest extends TestCase
      */
     public function test_documents_create_route_returns_correct_view()
     {
-        $user = $this->createUser();
+        $user = User::factory()->create();
 
         $response = $this->actingAs($user)->get(route('documents.create'));
         $response->assertStatus(302);

@@ -12,21 +12,7 @@ use Tests\TestCase;
 
 class EventTrainerControllerTest extends TestCase
 {
-    private function createUser()
-    {
-        return User::factory()->create();
-    }
-
-    private function createCourse()
-    {
-        return Course::factory()->create();
-    }
-
-    private function createEvent()
-    {
-        $this->createCourse();
-        return Event::factory()->create();
-    }
+    use RefreshDatabase;
 
     /**
      * Test the event trainer index route.
@@ -35,8 +21,10 @@ class EventTrainerControllerTest extends TestCase
      */
     public function test_event_trainer_index_route_returns_correct_view()
     {
-        $user = $this->createUser();
-        $event = $this->createEvent();
+        $user = User::factory()->create();
+        Course::factory()->create();
+        Venue::factory()->create();
+        $event = Event::factory()->create();
 
         $response = $this->actingAs($user)->get(route('events.trainers.index', $event));
         $response->assertStatus(302);
@@ -50,8 +38,10 @@ class EventTrainerControllerTest extends TestCase
      */
     public function test_event_trainer_create_route_returns_correct_view()
     {
-        $user = $this->createUser();
-        $event = $this->createEvent();
+        $user = User::factory()->create();
+        Course::factory()->create();
+        Venue::factory()->create();
+        $event = Event::factory()->create();
 
         $response = $this->actingAs($user)->get(route('events.trainers.create', $event));
         $response->assertStatus(200);
