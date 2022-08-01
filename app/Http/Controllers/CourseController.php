@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 namespace App\Http\Controllers;
 
@@ -39,7 +39,7 @@ class CourseController extends Controller
      */
     public function store(CourseStoreRequest $request)
     {
-        $course = Course::create($request->validated());
+        $course = Course::create($request->validated()); 
 
         return redirect(route('courses.show', $course))->with('message', 'Course created!');
     }

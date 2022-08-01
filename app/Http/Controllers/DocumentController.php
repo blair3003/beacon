@@ -22,7 +22,7 @@ class DocumentController extends Controller
      */
     public function index()
     {
-        //
+        return redirect(route('events.index'));
     }
 
     /**
@@ -32,7 +32,7 @@ class DocumentController extends Controller
      */
     public function create()
     {
-        //
+        return redirect(route('events.index'));
     }
 
     /**
@@ -61,7 +61,7 @@ class DocumentController extends Controller
      */
     public function show(Document $document)
     {
-        //
+        return redirect(route('events.index'));
     }
 
     /**
@@ -72,7 +72,7 @@ class DocumentController extends Controller
      */
     public function edit(Document $document)
     {
-        //
+        return redirect(route('events.index'));
     }
 
     /**
@@ -84,7 +84,7 @@ class DocumentController extends Controller
      */
     public function update(DocumentStoreRequest $request, Document $document)
     {
-        //
+        return redirect(route('events.index'));
     }
 
     /**

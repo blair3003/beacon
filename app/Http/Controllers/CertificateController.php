@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers; 
 
 use App\Http\Requests\CertificateStoreRequest;
 use App\Models\Certificate;
@@ -15,7 +15,7 @@ class CertificateController extends Controller
      */
     public function index()
     {
-        return redirect(route('events.index'));
+        return redirect(route('events.index')); 
     }
 
     /**

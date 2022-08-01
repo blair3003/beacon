@@ -39,7 +39,7 @@ class EventTraineeController extends Controller
         return view('events.trainees.create', [
             'event' => $event,
             'trainees' => Trainee::whereNotIn('id', $event->trainees->pluck('id'))->orderBy('last_name', 'asc')->get()
-        ]);
+        ]); 
 
     }
 
