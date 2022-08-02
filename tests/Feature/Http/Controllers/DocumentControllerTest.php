@@ -19,7 +19,7 @@ class DocumentControllerTest extends TestCase
      *
      * @return void
      */
-    public function test_documents_index_route_returns_correct_view()
+    public function test_documents_index_route_returns_event_index_view()
     {
         $user = User::factory()->create();
 
@@ -33,7 +33,7 @@ class DocumentControllerTest extends TestCase
      *
      * @return void
      */
-    public function test_documents_create_route_returns_correct_view()
+    public function test_documents_create_route_returns_event_index_view()
     {
         $user = User::factory()->create();
 

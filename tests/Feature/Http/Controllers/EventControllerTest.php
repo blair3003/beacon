@@ -19,7 +19,7 @@ class EventControllerTest extends TestCase
      *
      * @return void
      */
-    public function test_events_index_route_returns_correct_view()
+    public function test_events_index_route_returns_index_view()
     {
         $user = User::factory()->create();
 
@@ -33,7 +33,7 @@ class EventControllerTest extends TestCase
      *
      * @return void
      */
-    public function test_events_create_route_returns_correct_view()
+    public function test_events_create_route_returns_create_view()
     {
         $user = User::factory()->create();
 
@@ -47,7 +47,7 @@ class EventControllerTest extends TestCase
      *
      * @return void
      */
-    public function test_events_show_route_returns_correct_view()
+    public function test_events_show_route_returns_show_view()
     {
         $user = User::factory()->create();
         Course::factory()->create();
@@ -64,7 +64,7 @@ class EventControllerTest extends TestCase
      *
      * @return void
      */
-    public function test_events_edit_route_returns_correct_view()
+    public function test_events_edit_route_returns_edit_view()
     {
         $user = User::factory()->create();
         Course::factory()->create();

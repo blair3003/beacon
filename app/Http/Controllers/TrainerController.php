@@ -77,7 +77,7 @@ class TrainerController extends Controller
      */
     public function update(Request $request, Trainer $trainer)
     {
-        return redirect(route('trainees.show', $trainer->trainee))->with('message', 'Trainer updated!');
+        return redirect(route('trainees.show', $trainer->trainee));
     }
 
     /**

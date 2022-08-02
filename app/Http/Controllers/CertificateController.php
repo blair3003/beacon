@@ -73,7 +73,7 @@ class CertificateController extends Controller
     public function update(Request $request, Certificate $certificate)
     {
         return redirect(route('events.show', $certificate->event));
-    }
+    } 
 
     /**
      * Remove the specified resource from storage.

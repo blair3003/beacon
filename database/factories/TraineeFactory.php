@@ -30,6 +30,6 @@ class TraineeFactory extends Factory
             'city' => $this->faker->city(),
             'country' => $this->faker->country(),
             'zip' => $this->faker->postcode()
-        ];
+        ]; 
     }
 }
