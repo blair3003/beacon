@@ -69,25 +69,7 @@ class TrainerControllerTest extends TestCase
         $response = $this->actingAs($user)->get(route('trainers.edit', $trainer));
         $response->assertStatus(302);
         $response->assertRedirect(route('trainees.edit', $trainer->trainee));
-    }
-
-    /**
-     * Test the trainers update route.
-     *
-     * @return void
-     */
-    public function test_trainers_update_route_returns_trainee_show_view()
-    {
-        $user = User::factory()->create();
-        $trainer = Trainer::factory()->create();
-        $trainee = Trainee::factory()->create();        
-        
-        $response = $this->actingAs($user)->put(route('trainers.update', $trainer), [
-            'trainee_id' => $trainee->id
-        ]);
-        $response->assertStatus(302);
-        $response->assertRedirect(route('trainees.show', $trainer->trainee));
-    }    
+    } 
 
     /**
      * Test the trainers store route.

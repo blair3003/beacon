@@ -93,3 +93,4 @@ class TrainerController extends Controller
         return redirect(route('trainees.show', $trainer->trainee))->with('message', 'Trainer removed!');
     }
 }
+ 

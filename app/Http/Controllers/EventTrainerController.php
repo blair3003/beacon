@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 namespace App\Http\Controllers;
 
@@ -40,9 +40,6 @@ class EventTrainerController extends Controller
             'trainers' => Trainer::whereNotIn('trainers.id', $event->trainers->pluck('id'))->select('trainers.*', 'trainees.first_name', 'trainees.last_name', 'trainees.email')->join('trainees', 'trainers.trainee_id', '=', 'trainees.id')->orderBy('trainees.last_name')->orderBy('trainees.first_name')->get()
         ]);
     }
-
-
-
 
     /**
      * Store a newly created resource in storage.

@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 namespace Tests\Feature\Http\Controllers;
 
@@ -19,23 +19,6 @@ class EventTrainerControllerTest extends TestCase
     use WithFaker;
 
     /**
-     * Test the event trainer index route.
-     *
-     * @return void
-     */
-    public function test_event_trainer_index_route_returns_event_show_view()
-    {
-        $user = User::factory()->create();
-        Course::factory()->create();
-        Venue::factory()->create();
-        $event = Event::factory()->create();
-
-        $response = $this->actingAs($user)->get(route('events.trainers.index', $event));
-        $response->assertStatus(302);
-        $response->assertRedirect(route('events.show', $event));
-    }
-
-    /**
      * Test the event trainer create route.
      *
      * @return void
@@ -50,72 +33,6 @@ class EventTrainerControllerTest extends TestCase
         $response = $this->actingAs($user)->get(route('events.trainers.create', $event));
         $response->assertStatus(200);
         $response->assertViewIs('events.trainers.create', $event);
-    }
-
-    /**
-     * Test the event trainer show route.
-     *
-     * @return void
-     */
-    public function test_event_trainer_show_route_returns_event_show_view()
-    { 
-        $user = User::factory()->create();
-        Course::factory()->create();
-        Venue::factory()->create();
-        $event = Event::factory()->create();
-        $trainer = Trainer::factory()->create();
-
-        $event->trainers()->attach($trainer);
-
-        $response = $this->actingAs($user)->get(route('events.trainers.show', [$event, $trainer]));
-        $response->assertStatus(302);
-        $response->assertRedirect(route('events.show', $event));
-
-    }
-
-    /**
-     * Test the event trainer edit route.
-     *
-     * @return void
-     */
-    public function test_event_trainer_edit_route_returns_event_show_view()
-    { 
-        $user = User::factory()->create();
-        Course::factory()->create();
-        Venue::factory()->create();
-        $event = Event::factory()->create();
-        $trainer = Trainer::factory()->create();
-
-        $event->trainers()->attach($trainer);
-
-        $response = $this->actingAs($user)->get(route('events.trainers.edit', [$event, $trainer]));
-        $response->assertStatus(302);
-        $response->assertRedirect(route('events.show', $event));
-
-    }
-
-    /**
-     * Test the event trainer update route.
-     *
-     * @return void
-     */
-    public function test_event_trainer_update_route_returns_event_show_view()
-    { 
-        $user = User::factory()->create();
-        Course::factory()->create();
-        Venue::factory()->create();
-        $event = Event::factory()->create();
-        $trainer = Trainer::factory()->create();
-        $trainer2 = Trainer::factory()->create();
-
-        $event->trainers()->attach($trainer);
-
-        $response = $this->actingAs($user)->put(route('events.trainers.update', [$event, $trainer]), [
-            'trainer_id' => $trainer2->id
-        ]);
-        $response->assertStatus(302);
-        $response->assertRedirect(route('events.show', $event));
-
     }
 
     /**

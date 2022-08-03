@@ -15,24 +15,7 @@ use Tests\TestCase;
 class EventTraineeControllerTest extends TestCase
 {
     use RefreshDatabase;
-    use WithFaker;
-
-    /**
-     * Test the event trainee index route.
-     *
-     * @return void
-     */
-    public function test_event_trainee_index_route_returns_event_show_view()
-    {
-        $user = User::factory()->create();
-        Course::factory()->create();
-        Venue::factory()->create();
-        $event = Event::factory()->create();
-
-        $response = $this->actingAs($user)->get(route('events.trainees.index', $event));
-        $response->assertStatus(302);
-        $response->assertRedirect(route('events.show', $event));
-    }
+    use WithFaker; 
 
     /**
      * Test the event trainee create route.
@@ -49,72 +32,6 @@ class EventTraineeControllerTest extends TestCase
         $response = $this->actingAs($user)->get(route('events.trainees.create', $event));
         $response->assertStatus(200);
         $response->assertViewIs('events.trainees.create', $event);
-    }
-
-    /**
-     * Test the event trainee show route.
-     *
-     * @return void
-     */
-    public function test_event_trainee_show_route_returns_event_show_view()
-    { 
-        $user = User::factory()->create();
-        Course::factory()->create();
-        Venue::factory()->create();
-        $event = Event::factory()->create();
-        $trainee = Trainee::factory()->create();
-
-        $event->trainees()->attach($trainee);
-
-        $response = $this->actingAs($user)->get(route('events.trainees.show', [$event, $trainee]));
-        $response->assertStatus(302);
-        $response->assertRedirect(route('events.show', $event));
-
-    }
-
-    /**
-     * Test the event trainee edit route.
-     *
-     * @return void
-     */
-    public function test_event_trainee_edit_route_returns_event_show_view()
-    { 
-        $user = User::factory()->create();
-        Course::factory()->create();
-        Venue::factory()->create();
-        $event = Event::factory()->create();
-        $trainee = Trainee::factory()->create();
-
-        $event->trainees()->attach($trainee);
-
-        $response = $this->actingAs($user)->get(route('events.trainees.edit', [$event, $trainee]));
-        $response->assertStatus(302);
-        $response->assertRedirect(route('events.show', $event));
-
-    }
-
-    /**
-     * Test the event trainee update route.
-     *
-     * @return void
-     */
-    public function test_event_trainee_update_route_returns_event_show_view()
-    { 
-        $user = User::factory()->create();
-        Course::factory()->create();
-        Venue::factory()->create();
-        $event = Event::factory()->create();
-        $trainee = Trainee::factory()->create();
-        $trainee2 = Trainee::factory()->create();
-
-        $event->trainees()->attach($trainee);
-
-        $response = $this->actingAs($user)->put(route('events.trainees.update', [$event, $trainee]), [
-            'trainee_id' => $trainee2->id
-        ]);
-        $response->assertStatus(302);
-        $response->assertRedirect(route('events.show', $event));
-
     }
 
     /**
