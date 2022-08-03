@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Http\Controllers; 
 
@@ -6,6 +6,7 @@ use App\Http\Requests\DocumentStoreRequest;
 use App\Models\Document;
 use App\Services\DocumentService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class DocumentController extends Controller
 {
@@ -95,6 +96,7 @@ class DocumentController extends Controller
      */
     public function destroy(Document $document)
     {
+        Storage::disk('public')->delete($document->path);
         $document->delete();
 
         return back()->with('message', 'Document removed!');
