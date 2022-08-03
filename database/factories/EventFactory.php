@@ -26,8 +26,8 @@ class EventFactory extends Factory
             'venue_id' => Venue::all()->random()->id,
             'start_date' => $start->format('Y-m-d'),
             'end_date' => $end->format('Y-m-d'),
-            'start_time' => $start->format('H:i:s'),
-            'end_time' => $end->format('H:i:s'),
+            'start_time' => $start->format('H:i'),
+            'end_time' => $end->format('H:i'),
             'notes' => $this->faker->text(),
         ];
     }

@@ -70,7 +70,7 @@
                             </div>
 
                             <div class="flex mb-2 flex-wrap">
-                                <label for="end-time" class="basis-1/4 shrink-0">Start time:</label>
+                                <label for="end-time" class="basis-1/4 shrink-0">End time:</label>
                                 <input type="time" id="end-time" name="end_time" value="{{ old('end_time') }}" class="border-0 bg-slate-100 max-w-md grow">
                                 @error('end_time')
                                 <p class="basis-full text-red-600 shrink-0">{{ $message }}</p>

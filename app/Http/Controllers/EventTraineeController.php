@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\EventTraineeStoreRequest;
+use App\Http\Requests\EventTraineeStoreRequest; 
 use App\Models\Event;
 use App\Models\Trainee;
 use App\Services\EventService;

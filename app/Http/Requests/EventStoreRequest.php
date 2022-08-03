@@ -30,7 +30,7 @@ class EventStoreRequest extends FormRequest
             'start_time' => 'required|date_format:H:i',
             'end_date' => 'required|date|after_or_equal:start_date',
             'end_time' => 'required|date_format:H:i',
-            'notes' => 'nullable'
+            'notes' => 'nullable' 
         ];
     }
 }
