@@ -5,6 +5,8 @@
 *.html diff=html
 *.md diff=markdown
 *.php diff=php
+.platform/hooks/postdeploy/make_directories_writable.sh text eol=lf
+.platform/hooks/postdeploy/optimize_laravel.sh text eol=lf
 
 /.github export-ignore
 CHANGELOG.md export-ignore
