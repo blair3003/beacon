@@ -34,7 +34,7 @@
                         <div class="flex mb-1">
                             <div class="font-bold basis-1/4 shrink-0">Venue:</div>
                             <div class="max-w-prose">
-                                @unless($event->venue->doesntExist())
+                                @unless($event->venue()->doesntExist())
                                 <a href="{{ route('venues.show', $event->venue->id)}}" class="text-blue-400 hover:text-blue-500">{{ $event->venue->name }}</a>
                                 @endunless
                             </div>
