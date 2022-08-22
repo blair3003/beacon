@@ -2,10 +2,10 @@
     <x-slot:title>Edit Trainee</x-slot>
 
     <x-slot:header>
-        <div class="flex items-center">
+        <div class="flex items-center mb-4">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">Editing {{ $trainee->full_name }}</h2>
         </div>
-        <div class="flex space-x-4">
+        <div class="flex space-x-4 justify-end">
             
             @unless($trainee->isTrainer())
             <form method="POST" action="/trainers">

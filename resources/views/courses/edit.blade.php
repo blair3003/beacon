@@ -2,10 +2,10 @@
     <x-slot:title>Edit Course</x-slot>
 
     <x-slot:header>
-        <div class="flex items-center">
+        <div class="flex items-center mb-4">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">Editing {{ $course->title }}</h2>
         </div>
-        <div class="flex space-x-4">
+        <div class="flex space-x-4 justify-end">
             <x-link url="{{ route('courses.show', $course) }}" class="!text-black !bg-white hover:bg-slate-50">Back</x-link>                     
         </div>
     </x-slot>

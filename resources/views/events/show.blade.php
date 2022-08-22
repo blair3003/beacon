@@ -2,10 +2,10 @@
     <x-slot:title>Event</x-slot>
 
     <x-slot:header>
-        <div class="flex items-center">
+        <div class="flex items-center mb-4">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">{{ $event->course->title }}, {{ $event->full_dates }}</h2>            
         </div>
-        <div class="flex space-x-4">
+        <div class="flex space-x-4 justify-end">
             <x-link url="{{ route('events.edit', $event->id) }}" class="!bg-yellow-400">Edit</x-link>
 
             <form method="POST" action="{{ route('events.show', $event->id) }}">
@@ -90,9 +90,9 @@
                                 <tbody>
                                     @foreach($event->trainees->sortBy('last_name') as $trainee)
                                     <tr class="hover:bg-slate-50 border-b border-gray-200">
-                                        <td class="p-2"><a href="{{ route('trainees.show', $trainee) }}" class="text-blue-400 hover:text-blue-500">{{ $trainee->full_name }}</a></td>
-                                        <td class="p-2"><a href="mailto:{{ $trainee->email }}" class="text-blue-400 hover:text-blue-500">{{ $trainee->email }}</a></td>
-                                        <td class="flex items-center p-2">
+                                        <td class="p-2"><a href="{{ route('trainees.show', $trainee) }}" class="text-blue-400 hover:text-blue-500 break-all">{{ $trainee->full_name }}</a></td>
+                                        <td class="p-2"><a href="mailto:{{ $trainee->email }}" class="text-blue-400 hover:text-blue-500 break-all">{{ $trainee->email }}</a></td>
+                                        <td class="p-2">
 
 
 
@@ -161,8 +161,8 @@
                                 <tbody>                                    
                                     @foreach($event->trainers->sortBy('trainee.last_name') as $trainer)
                                     <tr class="hover:bg-slate-50 border-b border-gray-200">
-                                        <td class="p-2"><a href="{{ route('trainees.show', $trainer->trainee) }}" class="text-blue-400 hover:text-blue-500">{{ $trainer->trainee->full_name }}</a></td>
-                                        <td class="p-2"><a href="mailto:{{ $trainer->trainee->email }}" class="text-blue-400 hover:text-blue-500">{{ $trainer->trainee->email }}</a></td>
+                                        <td class="p-2"><a href="{{ route('trainees.show', $trainer->trainee) }}" class="text-blue-400 hover:text-blue-500 break-all">{{ $trainer->trainee->full_name }}</a></td>
+                                        <td class="p-2"><a href="mailto:{{ $trainer->trainee->email }}" class="text-blue-400 hover:text-blue-500 break-all">{{ $trainer->trainee->email }}</a></td>
                                         <td class="p-2"></td>
                                         <td class="p-2 text-right">
                                             <form method="POST" action="{{ route('events.trainers.destroy', [$event, $trainer]) }}">
@@ -185,13 +185,13 @@
                     </section>
 
                     <section class="mb-4 pb-4 border-b border-gray-200">
-                        <div class="flex justify-between mb-2">
-                            <h3 class="font-semibold text-2xl text-gray-800 leading-tight">Documents</h3>
+                        <div class="flex flex-col sm:flex-row justify-between mb-4">
+                            <h3 class="font-semibold text-2xl text-gray-800 leading-tight mb-4">Documents</h3>
                             
                             <form method="POST" action="{{ route('documents.index') }}" enctype="multipart/form-data">
                                 @csrf
 
-                                <div class="flex">
+                                <div class="flex justify-between">
 
                                     <div class="flex items-center">
                                         <input type="file" name="document" class="mr-6 file:text-black file:bg-white hover:file:bg-slate-100 file:mr-5 file:hover:opacity-90 file:font-bold file:py-2 file:px-4 file:rounded file:border-1 file:border-solid file:border-gray-200 file:cursor-pointer file:text-sm" required>

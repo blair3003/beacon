@@ -2,7 +2,12 @@
     <x-slot:title>Edit Venue</x-slot>
 
     <x-slot:header>
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">Editing {{ $venue->name }}</h2>
+        <div class="flex items-center mb-4">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">Editing {{ $venue->name }}</h2>
+        </div>
+        <div class="flex space-x-4 justify-end">
+            <x-link url="{{ route('venues.show', $venue) }}" class="!text-black !bg-white hover:bg-slate-50">Back</x-link>                     
+        </div>
     </x-slot>
 
     <div class="py-12">

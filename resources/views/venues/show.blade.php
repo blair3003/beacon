@@ -2,10 +2,10 @@
     <x-slot:title>Venue</x-slot>
 
     <x-slot:header>        
-        <div class="flex items-center">
+        <div class="flex items-center mb-4">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">{{ $venue->name }}</h2>
         </div>
-        <div class="flex space-x-4">
+        <div class="flex space-x-4 justify-end">
             <x-link url="{{ route('venues.edit', $venue->id) }}" class="!bg-yellow-400">Edit</x-link>
             <form method="POST" action="{{ route('venues.show', $venue->id) }}">
                 @csrf

@@ -2,10 +2,10 @@
     <x-slot:title>Trainee</x-slot>
 
     <x-slot:header>        
-        <div class="flex items-center">
+        <div class="flex items-center mb-4">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">{{ $trainee->full_name }}</h2>
         </div>
-        <div class="flex space-x-4">
+        <div class="flex space-x-4 justify-end">
             <x-link url="{{ route('trainees.edit', $trainee->id) }}" class="!bg-yellow-400">Edit</x-link>
             <form method="POST" action="{{ route('trainees.show', $trainee->id) }}">
                 @csrf
@@ -133,13 +133,13 @@
                     @endif
 
                     <section class="mb-4 pb-4 border-b border-gray-200">
-                        <div class="flex justify-between mb-2">
-                            <h3 class="font-semibold text-2xl text-gray-800 leading-tight">Documents</h3>
+                        <div class="flex flex-col sm:flex-row justify-between mb-4">
+                            <h3 class="font-semibold text-2xl text-gray-800 leading-tight mb-4">Documents</h3>
                             
                             <form method="POST" action="{{ route('documents.index') }}" enctype="multipart/form-data">
                                 @csrf
 
-                                <div class="flex">
+                                <div class="flex justify-between">
 
                                     <div class="flex items-center">
                                         <input type="file" name="document" class="mr-6 file:text-black file:bg-white hover:file:bg-slate-100 file:mr-5 file:hover:opacity-90 file:font-bold file:py-2 file:px-4 file:rounded file:border-1 file:border-solid file:border-gray-200 file:cursor-pointer file:text-sm" required>

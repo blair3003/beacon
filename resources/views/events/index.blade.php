@@ -2,9 +2,13 @@
     <x-slot:title>Events</x-slot>
 
     <x-slot:header>
-        <h2 class="flex items-center font-semibold text-xl text-gray-800 leading-tight">Events</h2>
+        <div class="flex items-center mb-4">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">Events</h2>            
+        </div>
+        <div class="flex space-x-4 justify-end">
+            <x-link url="{{ route('events.create') }}">Create new Event</x-link>                   
+        </div>
 
-        <x-link url="{{ route('events.create') }}">Create new Event</x-link>
     </x-slot>
 
     <div class="py-12">
