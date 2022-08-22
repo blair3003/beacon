@@ -8,7 +8,7 @@
 
 ### Introduction
 
-This project, titled An Events Management System for a Training Course Provider, explores the problem of an ineffective workflow in a real-world system and how the development of a software system can help solve that problem. The project uses a problem statement and supplementary domain descriptions and rules to provide context to the problem and establish a foundation for modelling the problem domain.
+This project, titled _An Events Management System for a Training Course Provider_, explores the problem of an ineffective workflow in a real-world system and how the development of a software system can help solve that problem. The project uses a problem statement and supplementary domain descriptions and rules to provide context to the problem and establish a foundation for modelling the problem domain.
 
 The domain is then refined through a process of requirements elicitation where interviews with project stakeholders take place. The output of this process is analysed to produce a logical model that describes the entities and their relationships within the domain and the processes and rules that govern functionality and constraints.
 
@@ -20,6 +20,6 @@ The goal of this project is to develop a software system that provides a high-qu
 
 The application is hosted on the Amazon AWS cloud service and can be accessed via the link and login details below:
 
-App: http://bob-master.eba-xtpajqn5.eu-west-2.elasticbeanstalk.com
-Email: admin@beacon.com
-Password: password
+- App: http://bob-master.eba-xtpajqn5.eu-west-2.elasticbeanstalk.com
+- Email: admin@beacon.com
+- Password: password
