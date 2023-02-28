@@ -16,10 +16,7 @@ Through the design and implementation process, the model transforms into a worki
 
 The goal of this project is to develop a software system that provides a high-quality solution to the problem outlined in the problem statement. In achieving this goal, many legal, social, and ethical concerns associated with the business will be considered, and the impact of a successful solution will be analysed.
 
-### Application link
+### Solution Document
 
-The application is hosted on the Amazon AWS cloud service and can be accessed via the link and login details below:
+https://github.com/blair3003/beacon/blob/master/public/docs/ema-tm470-k170784x.docx
 
-- App: http://beacon-ou-env.eba-sm7uhkqg.eu-west-2.elasticbeanstalk.com
-- Email: admin@beacon.com
-- Password: password
