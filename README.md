@@ -18,5 +18,5 @@ The goal of this project is to develop a software system that provides a high-qu
 
 ### Solution Document
 
-https://github.com/blair3003/beacon/blob/master/public/docs/ema-tm470-k170784x.pdf
+https://blair3003.github.io/beacon/public/docs/ema-tm470-k170784x.pdf
 
